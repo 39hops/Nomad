@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./js/index.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <title>NOMAD</title>
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="container" id="start">
+            <a href="#search">
+                <header>NOMAD</header>
+            </a>
+        </div>
+
+        <div class="container" id="search">
+
+            <div class="nav">
+                <span id="nomad">NOMAD</span>
+                <a href="">LOGIN</a>
+                <a href="">SIGNUP</a>
+            </div>
+
+            <h1 id="discover">discover.</h1>
+
+            <div class="search-bar glass">
+
+                <div class="dropdown">
+                    <input  type="text" class="text02" readonly placeholder="COUNTRY">
+                    <div class="option glass">
+                        <div onclick="show('No countries available.')">No countries available.</div>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <input type="text" class="text02" readonly placeholder="CITY">
+                    <div class="option glass">
+                        <div onclick="show('No cities available.')">No cities available.</div>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <input type="text" class="text02" readonly placeholder="ACTIVITY">
+                    <div class="option glass">
+                        <div onclick="show('No activities available.')">No activities available.</div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+</body>
+
+</html>

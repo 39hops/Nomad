@@ -1,0 +1,207 @@
+@font-face {
+    font-family: alexana;
+    src: url(../fonts/Alexana.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* desert stock image from https://images.pexels.com/photos/2097442/pexels-photo-2097442.jpeg?cs=srgb&dl=pexels-mohamedelaminemsiouri-2097442.jpg&fm=jpg */
+/* aurora stock image from https://www.pexels.com/collections/aurora-skies-xfllmkz/ */
+/* aurora 2 stock image from https://www.pexels.com/photo/green-aurora-lights-in-a-starry-night-sky-10081039/ */
+/* mountains stock image from https://www.pexels.com/photo/crater-between-mountains-under-blue-sky-white-clouds-and-stars-during-sunset-91225/ */
+body {
+    background-image: url(../images/mountain-stefanstefancik.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* overflow: hidden; */
+}
+
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.main {
+    /* border: solid white 1px; */
+    color: white;
+}
+
+#start {
+    /* border: solid blue 1px; */
+    height: 100vh;
+}
+
+header {
+    /* border: solid black 1px; */
+    width: fit-content;
+    position: relative;
+    left: 5%;
+    top: 70%;
+    font-family: alexana;
+    font-size: 100px;
+    cursor: pointer;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+#search {
+    /* border: solid red 1px; */
+    height: 100vh;
+}
+
+.nav {
+    /* border: solid white 1px; */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav span {
+    /* border: solid white 1px; */
+    font-family: alexana;
+    font-size: 45px;
+}
+
+.nav a {
+    color: white;
+    font-family: inter;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#discover {
+    /* border: solid white 1px; */
+    width: fit-content;
+    font-family: inter;
+    font-size: 80px;
+    opacity: 70%;
+    position: relative;
+    left: 10%;
+    top: 9%;
+}
+
+.search-bar {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 50px;
+    position: relative;
+    top: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* dropdown menu tutorial https://www.youtube.com/watch?v=nTfCqfVrO8E */
+
+.dropdown {
+    /* border: solid black 1px; */
+    position: relative;
+    width: 300px;
+    height: 50px;
+}
+
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 28px;
+    width: 12px;
+    height: 2px;
+    background: #003566;
+    z-index: 10;
+    transform: rotate(40deg);
+    transition: 0.5s;
+}
+
+.dropdown.active::before {
+    right: 20px;
+}
+
+.dropdown::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 12px;
+    height: 2px;
+    background: #003566;
+    z-index: 10;
+    transform: rotate(-40deg);
+    transition: 0.5s;
+}
+
+.dropdown.active::after {
+    right: 28px;
+}
+
+.dropdown input {
+    /* border: solid red 1px; */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-family: inter;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown .option {
+    position: absolute;
+    width: 100%;
+    top: 75px;
+    color: black;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 30px 30px rgba(0,0,0,0.5);
+    border-radius: 50px;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.25s;
+    font-family: inter;
+}
+
+.dropdown.active .option {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown .option div {
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.dropdown .option div:hover {
+    background: #003566;
+    color: white;
+}
