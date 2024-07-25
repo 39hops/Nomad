@@ -62,8 +62,12 @@ if ($result->num_rows > 0) {
                 <div class="dropdown">
                     <input type="text" id="activity-title" readonly placeholder="ACTIVITY">
                     <div class="option" id="activity-optn">
-                        <div><i>Please select a city.</i></div>
+                        <div id="nullAct"><i>Please select a city.</i></div>
                     </div>
+                </div>
+
+                <div>
+                    <img class="glass" src="../images/search.png" id="search-btn">
                 </div>
 
             </div>
@@ -77,6 +81,7 @@ if ($result->num_rows > 0) {
         var dropdown = document.querySelectorAll('.dropdown');
         var countryTitle = document.getElementById('country-title');
         var cityTitle = document.getElementById('city-title');
+        var actTitle = document.getElementById('activity-title');
 
         for (i = 0; i < dropdown.length; i++) {
             dropdown[i].addEventListener('click', toggle);
@@ -88,12 +93,16 @@ if ($result->num_rows > 0) {
 
         function selectCountry() {
             countryTitle.value = this.innerHTML;
-
             showCities(this.dataset.qry);
         }
 
         function selectCity() {
             cityTitle.value = this.innerHTML;
+            showActivities();
+        }
+
+        function selectActivity() {
+            actTitle.value = this.innerHTML;
         }
 
         function showCountries() {
@@ -155,7 +164,26 @@ if ($result->num_rows > 0) {
         }
 
         function showActivities() {
-            console.log('under construction');
+
+            var options = document.getElementById('activity-optn');
+            var nullAct = document.getElementById('nullAct');
+            const activities = ['Architecture', 'Nature', 'Museums', 'Restaurants'];
+
+            if (nullAct) {
+
+                nullAct.remove();
+
+                for (i = 0; i < activities.length; i++) {
+
+                    var optnDiv = document.createElement('div');
+                    optnDiv.innerHTML = activities[i];
+                    optnDiv.classList.add('glass');
+                    options.append(optnDiv);
+                    optnDiv.addEventListener('click', selectActivity);
+
+                }
+            }
+
         }
 
     </script>
