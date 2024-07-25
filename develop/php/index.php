@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
                 <div class="dropdown">
                     <input type="text" id="city-title" readonly placeholder="CITY">
                     <div class="option" id="city-optn">
-                        <div id="nullCity"><i>Please select a country.</i></div>
+                        <div class="city-item"><i>Please select a country.</i></div>
                     </div>
                 </div>
 
@@ -82,27 +82,45 @@ if ($result->num_rows > 0) {
         var countryTitle = document.getElementById('country-title');
         var cityTitle = document.getElementById('city-title');
         var actTitle = document.getElementById('activity-title');
+        var searchBtn = document.getElementById('search-btn');
 
         for (i = 0; i < dropdown.length; i++) {
             dropdown[i].addEventListener('click', toggle);
         }
 
+        searchBtn.addEventListener('click', search);
+
         function toggle() {
+
+            for (i = 0; i < dropdown.length; i++) {
+                if (dropdown[i] !== this) {
+                    if ((dropdown[i].classList.value).includes('active')) {
+                        dropdown[i].classList.toggle('active');
+                    }
+                }
+            }
+
             this.classList.toggle('active');
         }
 
         function selectCountry() {
+            cityTitle.value = '';
+            actTitle.value = '';
             countryTitle.value = this.innerHTML;
-            showCities(this.dataset.qry);
+            countryTitle.dataset.qry = this.dataset.qry;
+            getCities(this.dataset.qry);
         }
 
         function selectCity() {
+            actTitle.value = '';
             cityTitle.value = this.innerHTML;
+            cityTitle.dataset.qry = this.dataset.qry;
             showActivities();
         }
 
         function selectActivity() {
             actTitle.value = this.innerHTML;
+            actTitle.dataset.qry = this.dataset.qry;
         }
 
         function showCountries() {
@@ -124,40 +142,34 @@ if ($result->num_rows > 0) {
 
         showCountries();
 
-        function showCities(id) {
-
-            var countryID = id;
+        function getCities(id) {
 
             $.ajax({
                 type: "POST",
                 url: "./getCities.php",
-                data: { countryID: countryID },
+                data: { countryID: id },
                 success: function (data) {
 
                     var cities = JSON.parse(data);
                     var keys = Object.keys(cities);
                     var options = document.getElementById('city-optn');
-                    var nullCity = document.getElementById('nullCity');
-                    var prevQry = document.getElementsByClassName('item');
+                    prevQry = document.getElementsByClassName('city-item');
+                    var staticArr = Array.from(prevQry);
 
-                    if (nullCity !== null) {
-                        nullCity.remove();
-                    } else if (prevQry) {
-                        for (i = 0; i < prevQry.length; i++) {
-                            prevQry[i].remove();
-                        }
+                    for (i = 0; i < staticArr.length; i++) {
+                        staticArr[i].remove();
                     }
 
                     for (i = 0; i < keys.length; i++) {
-
                         var optnDiv = document.createElement('div');
                         optnDiv.innerHTML = cities[keys[i]];
                         optnDiv.dataset.qry = keys[i];
                         optnDiv.classList.add('glass');
-                        optnDiv.classList.add('item');
+                        optnDiv.classList.add('city-item');
                         options.append(optnDiv);
                         optnDiv.addEventListener('click', selectCity);
                     }
+
                 }
             });
 
@@ -167,7 +179,7 @@ if ($result->num_rows > 0) {
 
             var options = document.getElementById('activity-optn');
             var nullAct = document.getElementById('nullAct');
-            const activities = ['Architecture', 'Nature', 'Museums', 'Restaurants'];
+            const activities = ['Architecture', 'Nature', 'Museum', 'Restaurant'];
 
             if (nullAct) {
 
@@ -183,6 +195,33 @@ if ($result->num_rows > 0) {
 
                 }
             }
+
+        }
+
+        function search() {
+
+            console.log('searching . . .');
+
+            console.log(cityTitle.value);
+            console.log(actTitle.value);
+
+            if (actTitle.value == '' || cityTitle.value == '') {
+                console.log('Please select a country, city, and activity');
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "./getActivities.php",
+                data: {
+                    activity: (actTitle.value).toLowerCase(),
+                    cityID : cityTitle.dataset.qry
+                },
+                success: function (data) {
+
+                    var result = JSON.parse(data);
+                    console.log(result);
+                }
+            });
 
         }
 
