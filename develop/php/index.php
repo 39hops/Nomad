@@ -3,12 +3,12 @@
 include ("db_connection.php");
 
 $countriesArray = [];
-$sql = "SELECT id, name FROM country";
+$sql = "SELECT id, cr_name FROM country";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $countriesArray[$row["id"]] = $row["name"];
+        $countriesArray[$row["id"]] = $row["cr_name"];
     }
 }
 
@@ -205,13 +205,15 @@ if ($result->num_rows > 0) {
             console.log(cityTitle.value);
             console.log(actTitle.value);
 
+            //this should be turned into real client side validation later
+            
             if (actTitle.value == '' || cityTitle.value == '') {
                 console.log('Please select a country, city, and activity');
             }
 
             $.ajax({
                 type: "POST",
-                url: "./getActivities.php",
+                url: "./get-activities.php",
                 data: {
                     activity: (actTitle.value).toLowerCase(),
                     cityID : cityTitle.dataset.qry
@@ -220,6 +222,7 @@ if ($result->num_rows > 0) {
 
                     var result = JSON.parse(data);
                     console.log(result);
+                    location.replace('./search-results.php');
                 }
             });
 
