@@ -22,6 +22,10 @@ if (isset($_POST['activity']) && isset($_POST['cityID'])) {
         }
     }
 
+    session_start();
+    $_SESSION['search-results']=$activitiesArray;
+
+    // this can be deleted later
     echo json_encode($activitiesArray);
 
 } else {

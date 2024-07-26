@@ -205,13 +205,15 @@ if ($result->num_rows > 0) {
             console.log(cityTitle.value);
             console.log(actTitle.value);
 
+            //this should be turned into real client side validation later
+            
             if (actTitle.value == '' || cityTitle.value == '') {
                 console.log('Please select a country, city, and activity');
             }
 
             $.ajax({
                 type: "POST",
-                url: "./getActivities.php",
+                url: "./get-activities.php",
                 data: {
                     activity: (actTitle.value).toLowerCase(),
                     cityID : cityTitle.dataset.qry
@@ -220,6 +222,7 @@ if ($result->num_rows > 0) {
 
                     var result = JSON.parse(data);
                     console.log(result);
+                    location.replace('./search-results.php');
                 }
             });
 
