@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Nomad-Login</title>
+    <title>NOMAD | Login</title>
 </head>
+
 <body>
-    
-    <div class="navbar" >
-        <div><a href="../pages/index.html">Nomad</a></div>
-        <div><a href="../pages/signup.html">Sign Up</a></div>
-    </div>
-    
-   
-    <div class="login_window">
-        <form action="submit" method="post">
-            <h2>Welcome</h2>
-            <div class="loginItems">
-                <img id="avatar" src="../images/stockAv.jpg" alt="Avatar">
-            </div>
-            <div class="loginItems" >
-                <input placeholder="Username" type="text" name="username" id="username">
-            </div>
-            <div class="loginItems" >
-                <input placeholder="Password" type="text" name="password" id="password">
-            </div>  
-            <div class="loginItems">
-                <button id="loginButton" type="submit">Login</button>
-            </div>
-        </form>
-        <div class="signup">
-            <p>New to Nomad?<a href="../pages/signup.html">Sign Up</a></p>
+
+    <div class="login-window">
+
+        <div class="nav">
+            <span><a href="../php/index.php">NOMAD</a></span>
+            <div><a href="../pages/signup.html">SIGN UP</a></div>
         </div>
+
+        <div class="form-container glass">
+            <form action="" method="">
+                <h2>welcome</h2>
+
+                <div class="avi-wrapper">
+                    <img id="avatar" src="../images/default-anouar-olh.jpg" alt="Avatar">
+                </div>
+
+                <div class="loginItems">
+                    <input  class="glass" placeholder="Username" type="text" name="username" id="username">
+                    <p class="error" id="user-error"></p>
+                </div>
+
+                <div class="loginItems">
+                    <input class="glass" placeholder="Password" type="text" name="password" id="password">
+                    <p class="error" id="user-error"></p>
+                </div>
+
+                <div class="loginItems">
+                    <button class="glass" id="loginButton" type="submit">LOGIN</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="signup">
+            <p>New to Nomad? <a href="../pages/signup.html">SIGN UP</a></p>
+        </div>
+
     </div>
-    
-   
-    
+
+
+
 </body>
+
 </html>

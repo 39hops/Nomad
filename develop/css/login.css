@@ -1,79 +1,184 @@
-
-
-body{
-    height: 100%;
-    margin: 0;
-    
+@font-face {
+    font-family: alexana;
+    src: url(../fonts/Alexana.ttf);
 }
 
+@font-face {
+    font-family: inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
 
-.navbar{
-    border: 3px solid black;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    /* image source https://www.pexels.com/photo/dark-blue-ocean-water-with-foamy-waves-6029883/ by pok rie */
+    /* colour grade this and the index.php background to ensure cohesion */
+    background-image: url(../images/waves-pok-rie.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.login-window {
+    /* border: 3px solid red; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.nav {
+    /* border: 3px solid black; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-
+    padding: 10px;
+    font-family: inter;
+    font-size: 20px;
 }
 
-.login_window{
-    border: 3px solid red;
+.nav div a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav span a {
+    font-family: alexana;
+    color: white;
+    text-decoration: none;
+    font-size: 45px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-container {
+    /* border: solid blue 1px; */
+    margin: 20px;
+    padding: 20px;
+    width: 70%;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form {
+    /* border: solid pink 2px; */
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: inter;
+    color: white;
+}
+
+h2 {
+    /* border: solid white 1px; */
+    padding: 15px;
+    width: 100%;
+    font-size: 80px;
+    opacity: 70%;
+}
+
+#avatar {
+    /* border: black solid 2px; */
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.loginItems {
+    /* border: solid black 1px; */
+    padding: 10px;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
 }
 
-form{
-    box-sizing: border-box;
-    border: black solid 2px;
-    border-radius: 20px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    
-}
-
-.loginItems{
-    padding: 15px;
-}
-
-h2{
-    margin-bottom: 0;
-}
-
-#avatar{
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    border: black solid 2px;
-}
-
-input{
-    text-align: center;
-    font-weight:bold;
+form input {
+    background-color: transparent;
     border: none;
-}
-
-#loginButton{
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.signup{
+    border-radius: 50px !important;
+    height: 50px;
+    font-family: inter;
+    font-size: 20px;
     text-align: center;
+    color: #003566;
+    cursor: pointer;
+}
+
+form input::placeholder {
+    color: #003566;
+}
+
+.error {
+    font-family: inter;
+    font-size: 18px;
+    font-style: italic;
+}
+
+#loginButton {
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: inter;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#loginButton:hover {
+    background-color: #003566;
+    transform: translateY(-2px);
+}
+
+.signup {
+    /* border: solid white 1px; */
+    padding: 10px;
+    text-align: center;
+    font-family: inter;
+    color: white;
+}
+
+.signup a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.signup a:hover {
+    color: #003566;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
-    .login_window{
+    /* .login_window {
         border: 2px solid blue;
     }
 
-    form{
+    form {
         margin: 90px;
-    }
-        
-    
+    } */
+
+
 }
