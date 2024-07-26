@@ -3,12 +3,12 @@
 include ("db_connection.php");
 
 $countriesArray = [];
-$sql = "SELECT id, name FROM country";
+$sql = "SELECT id, cr_name FROM country";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $countriesArray[$row["id"]] = $row["name"];
+        $countriesArray[$row["id"]] = $row["cr_name"];
     }
 }
 
