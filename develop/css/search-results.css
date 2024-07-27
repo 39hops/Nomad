@@ -35,23 +35,19 @@ body a {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 10px;
 }
 
 .search-results {
-  flex: 0 1 40vw;
+  flex: 0 1 20vw;
   border: 1px solid black;
   flex-wrap: wrap;
   text-align: center;
   background-color: blanchedalmond;
 }
 
-.result {
-  flex: 1 0 40vw;
-}
-
 img {
-  width: 400px;
+  width: 20vw;
   margin: 0 auto;
   border-radius: 10px;
 }
