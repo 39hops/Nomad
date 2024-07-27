@@ -4,44 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/signup.css">
+    <script defer src="../js/signup.js"></script>
     <title>Nomad-Login</title>
 </head>
 <body>
-    
-    <div class="navbar" >
+    <div class="navbar">
         <div><a href="../pages/index.html">Nomad</a></div>
         <div><a href="../pages/login.html">Login</a></div>
     </div>
-    
    
     <div class="signup_window">
-        <form action="submit" method="post">
+        <form id="form" action="../php/signup.php" method="post">
             <h2>Sign Up</h2>
             <div class="signupItems">
                 <input placeholder="First Name" type="text" name="fname" id="fname">
+                <div class="error"></div>
             </div>
             <div class="signupItems">
                 <input placeholder="Last Name" type="text" name="lname" id="lname">
+                <div class="error"></div>
             </div>
-            <div class="signupItems" >
+            <div class="signupItems">
                 <input placeholder="Username" type="text" name="username" id="username">
+                <div class="error"></div>
             </div>
             <div class="signupItems">
                 <input placeholder="Email" type="text" name="email" id="email">
+                <div class="error"></div>
             </div>
-            <div class="signupItems" >
-                <input placeholder="Password" type="text" name="password" id="password">
+            <div class="signupItems">
+                <input placeholder="Password" type="password" name="password" id="password">
+                <div class="error"></div>
             </div>  
             <div class="signupItems">
                 <button id="signupButton" type="submit">Sign Up</button>
             </div>
         </form>
         <div class="login">
-            <p>Already a Nomad?<a href="../pages/login.html">Log In</a></p>
+            <p>Already a Nomad? <a href="../pages/login.html">Log In</a></p>
         </div>
     </div>
-    
-   
-    
 </body>
 </html>

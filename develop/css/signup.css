@@ -44,11 +44,12 @@ form{
 
 
 
-
 input{
     text-align: center;
     font-weight:bold;
     border: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #signupButton{
@@ -59,6 +60,20 @@ input{
 .login{
     text-align: center;
 }
+
+.error{
+    display: flex;
+    flex-wrap: wrap;
+    color: red;
+    font-size: 10px;
+    text-align: center;
+}
+
+input.error{
+    border: solid red 2px;
+}
+
+
 
 @media screen and (max-width: 600px) {
     .signup_window{
@@ -71,3 +86,5 @@ input{
         
     
 }
+
+
