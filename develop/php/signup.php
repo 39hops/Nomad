@@ -12,11 +12,6 @@ if(! $conn_stmt->prepare($sql)){
     die("SQL Error: " . $conn->error);
 };
 
-
-
-
-
-
 $conn_stmt->bind_param("sssss",
 $_POST["fname"],
 $_POST['lname'],
@@ -29,10 +24,5 @@ $_POST['password']);
  } else {
     die($conn->error . "");
  }
-
-
-
-
-
 
 $conn->close();
