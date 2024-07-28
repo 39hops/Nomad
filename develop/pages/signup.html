@@ -1,65 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/signup.css">
-    <title>NOMAD | Sign Up</title>
+    <script defer src="../js/signup.js"></script>
+    <title>Nomad-Login</title>
 </head>
-
 <body>
-    <div class="signup-window">
-
-        <div class="nav">
-            <div><span><a href="../php/index.php">NOMAD</a></span></div>
-            <div><a href="../pages/login.html">LOGIN</a></div>
-        </div>
-
-        <div class="form-container glass">
-            <form action="" method="">
-
-                <h2>sign up</h2>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="First Name" type="text" name="fname" id="fname">
-                </div>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="Last Name" type="text" name="lname" id="lname">
-                </div>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="Username" type="text" name="username" id="username">
-                    <p class="error"></p>
-                </div>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="Email" type="text" name="email" id="email">
-                    <p class="error"></p>
-                </div>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="Password" type="text" name="password" id="password01">
-                    <p class="error"></p>
-                </div>
-
-                <div class="signupItems">
-                    <input class="glass" placeholder="Re-type Password" type="text" name="password" id="password02">
-                    <p class="error"></p>
-                </div>
-
-                <div class="signupItems">
-                    <button class="glass" id="signupButton" type="submit">SIGN UP</button>
-                </div>
-
-            </form>
-        </div>
-
+    <div class="nav">
+        <div><span><a href="../pages/index.html">NOMAD</a></span></div>
+        <div><a href="../pages/login.html">LOGIN</a></div>
+    </div>
+   
+    <div class="form-container glass">
+        <form id="form" name="form" action="../php/signup.php" method="post">
+            <h2>Sign Up</h2>
+            <div class="signupItems">
+                <input class="glass" placeholder="First Name" type="text" name="fname" id="fname">
+                <div class="error"></div>
+            </div>
+            <div class="signupItems">
+                <input class="glass" placeholder="Last Name" type="text" name="lname" id="lname">
+                <div class="error"></div>
+            </div>
+            <div class="signupItems">
+                <input class="glass" placeholder="Username" type="text" name="username" id="username">
+                <div class="error"></div>
+            </div>
+            <div class="signupItems">
+                <input class="glass" placeholder="Email" type="text" name="email" id="email">
+                <div class="error"></div>
+            </div>
+            <div class="signupItems">
+                <input class="glass" placeholder="Password" type="password" name="password" id="password">
+                <div class="error"></div>
+            </div>  
+            <div class="signupItems">
+                <button class="glass" id="signupButton" type="submit">Sign Up</button>
+            </div>
+        </form>
         <div class="login">
-            <p>Already a Nomad? <a href="../pages/login.html">LOG IN</a></p>
+            <p>Already a Nomad? <a href="../pages/login.html">Log In</a></p>
         </div>
     </div>
+    
 </body>
-
 </html>
