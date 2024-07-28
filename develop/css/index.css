@@ -50,15 +50,16 @@ body {
 }
 
 header {
-    /* border: solid black 1px; */
+    border: solid black 1px; 
     width: fit-content;
     position: relative;
-    left: 5%;
-    top: 70%;
+    left: 5% !important;
+    top: 50% !important;
     font-family: alexana;
     font-size: 100px;
     cursor: pointer;
     color: white;
+   
 }
 
 a {
