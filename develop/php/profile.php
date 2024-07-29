@@ -5,7 +5,7 @@ include ("db_connection.php");
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
 WHERE user_id = 1
-ORDER BY date_created DESC";
+ORDER BY date_created";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="functions">
-            <img class="icon" id="edit" src="../images/edit.png">
+            <a href="../pages/edit-profile.html"><img class="icon" id="edit" src="../images/edit.png"></a>
             <img class="icon" id="create" src="../images/create.png">
         </div>
 
