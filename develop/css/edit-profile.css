@@ -1,0 +1,95 @@
+@font-face {
+    font-family: alexana;
+    src: url(../fonts/Alexana.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    background-color: #003566;
+}
+
+.nav {
+    /* border: solid red 1px; */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav span {
+    font-family: alexana;
+    font-size: 40px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}
+
+.nav a {
+    font-family: inter;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-container {
+    /* border: solid white 1px; */
+    height: 100vh;
+}
+
+.content-wrapper {
+    /* border: solid yellow 1px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.avi {
+    margin: 30px;
+}
+
+#avi {
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+}
+
+.edit-wrapper {
+    /* border: solid yellow 1px; */
+    width: fit-content;
+    padding: 20px;
+    height: fit-content;
+}
+
+form input {
+    border: none;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50px;
+    margin: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+form button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
