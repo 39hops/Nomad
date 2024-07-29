@@ -27,6 +27,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/search-results.css?v=<?php echo time(); ?>">
     <title>NOMAD | Search</title>
 </head>
@@ -47,7 +48,7 @@ if ($result->num_rows > 0) {
         <div id="addModal">
             <div class="close">&times;</div>
             <div class="form-wrapper">
-                <form action="../php/add-to-itinerary.php" method="post" id="select-itry">
+                <form id="select-itry">
                     <p id="message">Select an itinerary:</p>
                 </form>
             </div>
@@ -67,16 +68,20 @@ if ($result->num_rows > 0) {
     const cityName = data[1].c_name;
     var itinerariesArray = <?php echo json_encode($itinerariesArray); ?>;
     var addModal = document.getElementById('addModal');
+    var close = document.querySelector('.close');
     var form = document.getElementById('select-itry');
     var p = document.getElementById('message');
 
     // below can be deleted later
-    console.log(data);
-    console.log(data[1]);
-    console.log(data[1].a_id);
+    // console.log(data);
+    // console.log(data[1]);
+    // console.log(data[1].a_id);
 
     activity.innerHTML = data[0];
     city.innerHTML = cityName;
+
+    close.addEventListener('click', closeModal);
+
 
     function loadSearch() {
 
@@ -108,7 +113,7 @@ if ($result->num_rows > 0) {
             results.append(card);
             container.append(results);
 
-            addBtn.addEventListener('click', addItry);
+            addBtn.addEventListener('click', openModal);
 
             results.setAttribute('class', 'search-results');
         }
@@ -133,12 +138,12 @@ if ($result->num_rows > 0) {
                 form.append(br);
             }
 
-            var submitBtn = document.createElement('button');
-            submitBtn.setAttribute('type', 'submit');
-            submitBtn.classList.add('glass');
-            submitBtn.innerHTML = 'ADD';
+            var addBtn = document.createElement('button');
+            addBtn.setAttribute('type', 'button');
+            addBtn.innerHTML = 'ADD';
+            addBtn.addEventListener('click', addItry);
 
-            form.append(submitBtn);
+            form.append(addBtn);
 
         } else {
 
@@ -156,8 +161,38 @@ if ($result->num_rows > 0) {
         }
     }
 
-    function addItry() {
+    function openModal(e) {
+        addModal.style.display = "block";
+        var activityID = (e.target).parentNode.dataset.qry;
+        addModal.dataset.activityID = activityID;
+    }
+    
+    function closeModal() {
+        addModal.style.display = "none";
+    }
 
+    function addItry() {
+        var select = document.querySelector('input[name="itry"]:checked');
+        activityID = addModal.dataset.activityID;
+        itineraryID = select.value;
+
+        if (!activityID || !itineraryID) {
+                console.log('Please an activity to add to your itinerary');
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "./add-to-itinerary.php",
+                data: {
+                    activityID: activityID,
+                    itineraryID: itineraryID
+                },
+                success: function (data) {
+
+                    location.reload();
+
+                }
+            });
     }
 
     loadSearch();
