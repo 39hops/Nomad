@@ -10,7 +10,7 @@ if (isset($_POST['activity']) && isset($_POST['cityID'])) {
     $sql = "SELECT *
     FROM $activity
     JOIN activity
-    ON $activity.activity_id = activity.id
+    ON $activity.activity_id = activity.a_id
     JOIN city
     ON activity.city_id = city.id
     WHERE city.id = $cityID";
@@ -22,10 +22,12 @@ if (isset($_POST['activity']) && isset($_POST['cityID'])) {
         }
     }
 
+    array_unshift($activitiesArray, $activity);
+
     session_start();
     $_SESSION['search-results']=$activitiesArray;
 
-    // this can be deleted later
+    // i think this can be deleted later ??
     echo json_encode($activitiesArray);
 
 } else {
