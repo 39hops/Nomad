@@ -7,7 +7,7 @@ $searchResults = $_SESSION["search-results"];
 $json_output = json_encode($searchResults);
 
 echo " <div class='nav'>
-<span id='nomad'>NOMAD</span>
+<a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
 <a href='../pages/login.html'>LOGIN</a>
 <a href='../pages/signup.html'>SIGNUP</a>
 </div> ";
