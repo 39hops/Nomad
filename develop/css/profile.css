@@ -1,0 +1,234 @@
+@font-face {
+    font-family: alexana;
+    src: url(../fonts/Alexana.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    background-color: #003566;
+}
+
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.profile-container {
+    /* border: solid black 1px; */
+    height: 100vh;
+}
+
+.nav {
+    /* border: solid red 1px; */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav span {
+    font-family: alexana;
+    font-size: 40px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}
+
+.nav a {
+    font-family: inter;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#avi {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+
+.user {
+    /* border: solid blue 1px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-family: inter;
+    color: white;
+    font-weight: 400;
+}
+
+.functions {
+    /* border: solid white 1px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    /* border: solid white 1px; */
+    background: rgba(255, 255, 255, 0.2);
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 50%;
+    transition: 0.2s all;
+}
+
+.icon:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.itry-container {
+    /* border: solid violet 1px; */
+    color: white;
+}
+
+#createModal {
+    /* border: solid white 1px; */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    color: #003566;
+    font-family: inter;
+    font-size: 20px;
+}
+
+.close {
+    /* border: solid white 1px; */
+    text-align: right;
+    padding-right: 15px;
+    color: #003566;
+    font-size: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close:hover {
+    color: white;
+}
+
+.form-wrapper {
+    /* border: solid blue 1px; */
+    height: 80%;
+}
+
+form {
+    /* border: solid pink 1px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+form label,
+form input,
+form button {
+    margin: 5px;
+}
+
+form input {
+    border: none;
+    border-radius: 50px;
+    height: 50px;
+    font-size: 20px;
+    font-family: inter;
+    color: #003566;
+    cursor: pointer;
+    padding: 10px;
+}
+
+form button {
+    border: none;
+    border-radius: 50px !important;
+    height: 50px;
+    padding: 10px;
+    font-family: inter;
+    font-size: 20px;
+    font-weight: bold;
+    color: #003566;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+div button:hover {
+    transform: translateY(-2px);
+    background-color: #003566;
+    color: white;
+}
+
+.itry-container {
+    /* border: solid yellow 1px; */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.null {
+    font-family: inter;
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+.card {
+    /* border: solid white 1px; */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 30%;
+    font-family: inter;
+    font-size: 30px;
+    border-radius: 50px;
+    height: 200px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover p {
+    font-size: 40px;
+}
