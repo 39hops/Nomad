@@ -21,7 +21,8 @@ $password);
 
 
  if ($conn_stmt->execute()){
-    header("Location: ../pages/login.html");
+    echo "Signup Success!"; 
+    header("./index.php");
  } else {
     die($conn->error . "");
  }

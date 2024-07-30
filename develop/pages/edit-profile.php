@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,40 +31,53 @@
                 <div id="edit-avi">
                     <form>
                         <input type="text" placeholder="avi.url">
-                        <button type="submit" method="post" action="edit-avi.php">x</button>
+                        <button type="button">x</button>
                     </form>
                 </div>
 
                 <div id="edit-username">
                     <form>
                         <input type="text" placeholder="username">
-                        <button type="submit" method="post" action="edit-username.php">x</button>
+                        <button type="button">x</button>
                     </form>
                 </div>
 
                 <div id="edit-email">
                     <form>
                         <input type="text" placeholder="email">
-                        <button type="submit" method="post" action="edit-email.php">x</button>
+                        <button type="button">x</button>
                     </form>
                 </div>
 
                 <div id="edit-bio">
                     <form>
                         <input type="text" placeholder="bio">
-                        <button type="submit" method="post" action="edit-bio.php">x</button>
+                        <button type="button">x</button>
                     </form>
                 </div>
 
                 <div id="edit-password">
                     <form>
                         <input type="text" placeholder="password">
-                        <button type="submit" method="post" action="edit-password.php">x</button>
+                        <button type="button">x</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        docucument.addEventListener('click', )
+
+                $.ajax({
+                    url: 'edit-profile.php', 
+                    type: 'POST',
+                    data: 
+                    
+                });
+        
+    </script>
+
 
 </body>
 
