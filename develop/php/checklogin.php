@@ -25,6 +25,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 if (password_verify($pass, $row["u_password"])){
                     $_SESSION['userid'] = $row['id'];
                     $_SESSION['firstname'] = $row['first_name'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['loggedIn'] = true;
                     header("Location: index.php");
                     exit();
                 } 

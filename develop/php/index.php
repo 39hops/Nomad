@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include ("db_connection.php");
 
 $countriesArray = [];
@@ -36,12 +37,25 @@ if ($result->num_rows > 0) {
 
         <div class="container" id="search">
 
-            <div class="nav">
-                <span id="nomad">NOMAD</span>
-                <a href="../php/profile.php">PROFILE</a>
-                <a href="../php/login.php">LOGIN</a>
-                <a href="../pages/signup.html">SIGNUP</a>
-            </div>
+            <?php
+
+            echo "Session LoggedIn value: " . ($_SESSION['loggedIn'] ?? 'Not set');
+
+            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+                echo "<div class='nav'>
+                <span id='nomad'>NOMAD</span>
+                <a href='./profile.php'>PROFILE</a>
+                <a href='./logout.php'>LOGOUT</a>
+                </div>";
+            } else {
+                echo "<div class='nav'>
+                <span id='nomad'>NOMAD</span>
+                <a href='../php/login.php'>LOGIN</a>
+                <a href='../pages/signup.html'>SIGNUP</a>
+                </div>";
+            }
+            ?>
+
 
             <h1 id="discover">discover.</h1>
 
@@ -207,7 +221,7 @@ if ($result->num_rows > 0) {
             console.log(actTitle.value);
 
             //this should be turned into real client side validation later
-            
+
             if (actTitle.value == '' || cityTitle.value == '') {
                 console.log('Please select a country, city, and activity');
             }
@@ -217,7 +231,7 @@ if ($result->num_rows > 0) {
                 url: "./get-activities.php",
                 data: {
                     activity: (actTitle.value).toLowerCase(),
-                    cityID : cityTitle.dataset.qry
+                    cityID: cityTitle.dataset.qry
                 },
                 success: function (data) {
 
