@@ -1,0 +1,91 @@
+@font-face {
+    font-family: alexana;
+    src: url(../fonts/Alexana.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+* {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    background-color: #12262d;
+}
+
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.activity-container {
+    height: 100vh;
+}
+
+.nav {
+    /* border: solid white 1px; */
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav span {
+    /* border: solid white 1px; */
+    font-family: alexana;
+    font-size: 45px;
+    cursor: pointer;
+    color: white;
+    font-weight: 400;
+}
+
+.nav a {
+    text-decoration: none;
+    font-family: inter;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.activity-wrapper {
+    /* border: solid white 1px; */
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    /* border: solid black 1px; */
+    height: 300px;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.imgWrapper {
+    height: 200px;
+    width: 200px;
+    border-radius: 50px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px;
+}
