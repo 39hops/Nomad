@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
             <div class="nav">
                 <span id="nomad">NOMAD</span>
                 <a href="../php/profile.php">PROFILE</a>
-                <a href="../pages/login.html">LOGIN</a>
+                <a href="../php/login.php">LOGIN</a>
                 <a href="../pages/signup.html">SIGNUP</a>
             </div>
 
