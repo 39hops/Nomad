@@ -34,23 +34,23 @@ if ($result->num_rows > 0) {
 <body>
 
     <div class='search-results-container'>
-        
+
         <?php
 
         echo "Session LoggedIn value: " . ($_SESSION['loggedIn'] ?? 'Not set');
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
-    <span id='nomad'>NOMAD</span>
-    <a href='../php/profile.php'>PROFILE</a>
-    <a href=''>LOGOUT</a>
-    </div>";
+            <span id='nomad'>NOMAD</span>
+            <a href='../php/profile.php'>PROFILE</a>
+            <a href='./logout.php'>LOGOUT</a>
+            </div>";
         } else {
             echo "<div class='nav'>
-    <span id='nomad'>NOMAD</span>
-    <a href='../php/login.php'>LOGIN</a>
-    <a href='../pages/signup.html'>SIGNUP</a>
-    </div>";
+            <span id='nomad'>NOMAD</span>
+            <a href='../php/login.php'>LOGIN</a>
+            <a href='../pages/signup.html'>SIGNUP</a>
+            </div>";
         }
         ?>
 
