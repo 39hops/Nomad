@@ -18,7 +18,6 @@ if ($result->num_rows > 0) {
         $itinerariesArray[] = (object) $row;
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +44,18 @@ if ($result->num_rows > 0) {
             now viewing <span id='activity'></span> in <span id='city'></span>
         </div>
 
-        <div id="addModal">
-            <div class="close">&times;</div>
-            <div class="form-wrapper">
-                <form id="select-itry">
-                    <p id="message">Select an itinerary:</p>
-                </form>
+        <div class="modal-bg">
+            <div class="glass" id="addModal">
+                <div class="close">&times;</div>
+                <div class="form-wrapper">
+                    <form id="select-itry">
+                        <p id="message">Select an itinerary:</p>
+                    </form>
+                    <p class="success">Successfully added to itinerary</p>
+                </div>
             </div>
         </div>
+
     </div>
 
 </body>
@@ -67,10 +70,12 @@ if ($result->num_rows > 0) {
     const city = document.getElementById('city');
     const cityName = data[1].c_name;
     var itinerariesArray = <?php echo json_encode($itinerariesArray); ?>;
+    var modalBG = document.querySelector('.modal-bg');
     var addModal = document.getElementById('addModal');
     var close = document.querySelector('.close');
     var form = document.getElementById('select-itry');
     var p = document.getElementById('message');
+    var message = document.querySelector('.success');
 
     // below can be deleted later
     // console.log(data);
@@ -124,17 +129,20 @@ if ($result->num_rows > 0) {
 
         if (itinerariesArray && itinerariesArray.length > 0) {
             for (i = 0; i < itinerariesArray.length; i++) {
-                var radio = document.createElement('input');
-                var label = document.createElement('label');
+                var field = document.createElement('input');
                 var br = document.createElement('br');
 
-                radio.setAttribute('type', 'radio');
-                radio.setAttribute('name', 'itry');
-                radio.setAttribute('value', itinerariesArray[i].id);
-                label.innerHTML = itinerariesArray[i].it_name;
+                field.setAttribute('type', 'text');
+                field.setAttribute('name', 'itry');
+                field.readOnly = true;
+                field.setAttribute('value', itinerariesArray[i].it_name);
+                field.dataset.itineraryId = itinerariesArray[i].id;
+                field.addEventListener('click', (e) => {
+                    itineraryID = (e.target).dataset.itineraryId;
+                    addModal.dataset.itineraryId = itineraryID;
+                })
 
-                form.append(radio);
-                form.append(label);
+                form.append(field);
                 form.append(br);
             }
 
@@ -162,37 +170,48 @@ if ($result->num_rows > 0) {
     }
 
     function openModal(e) {
+        modalBG.style.display = "block";
         addModal.style.display = "block";
+
         var activityID = (e.target).parentNode.dataset.qry;
-        addModal.dataset.activityID = activityID;
+        addModal.dataset.activityId = activityID;
     }
-    
+
     function closeModal() {
+        modalBG.style.display = "none";
         addModal.style.display = "none";
     }
 
     function addItry() {
-        var select = document.querySelector('input[name="itry"]:checked');
-        activityID = addModal.dataset.activityID;
-        itineraryID = select.value;
+
+        activityID = addModal.dataset.activityId;
+        itineraryID = addModal.dataset.itineraryId;
+
+        // console.log(activityID);
+        // console.log(itineraryID);
 
         if (!activityID || !itineraryID) {
-                console.log('Please an activity to add to your itinerary');
-            }
+            console.log('Please an activity to add to your itinerary');
+        }
 
-            $.ajax({
-                type: "POST",
-                url: "./add-to-itinerary.php",
-                data: {
-                    activityID: activityID,
-                    itineraryID: itineraryID
-                },
-                success: function (data) {
+        $.ajax({
+            type: "POST",
+            url: "./add-to-itinerary.php",
+            data: {
+                activityID: activityID,
+                itineraryID: itineraryID
+            },
+            success: function (data) {
 
+                message.style.display = "block";
+
+                setTimeout(function() {
                     location.reload();
+                }, 3000);
 
-                }
-            });
+            }
+        });
+
     }
 
     loadSearch();
