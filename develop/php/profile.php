@@ -5,7 +5,7 @@ include ("db_connection.php");
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
 WHERE user_id = 1
-ORDER BY date_created";
+ORDER BY date_created DESC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -22,6 +22,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/profile.css?v=<?php echo time(); ?>">
     <title>NOMAD | Profile</title>
 </head>
@@ -85,11 +86,15 @@ if ($result->num_rows > 0) {
 
         function onLoad() {
 
+            console.log(itinerariesArray);
+
             if (itinerariesArray && itinerariesArray.length > 0) {
-                for (i=0; i<itinerariesArray.length; i++) {
+                for (i = 0; i < itinerariesArray.length; i++) {
                     var card = document.createElement('div');
                     card.classList.add('card');
                     card.classList.add('glass');
+                    card.dataset.itineraryId = itinerariesArray[i].id;
+                    card.addEventListener('click', getItryAct);
                     var itName = document.createElement('p');
                     itName.innerText = itinerariesArray[i].it_name;
                     card.append(itName);
@@ -104,6 +109,31 @@ if ($result->num_rows > 0) {
         }
 
         onLoad();
+
+
+        function getItryAct(e) {
+
+            // console.log(e);
+            // console.log(e.target);
+            console.log((e.target).dataset.itineraryId);
+            var itineraryID = (e.target).dataset.itineraryId;
+
+            $.ajax({
+                type: "POST",
+                url: "./get-itinerary-activities.php",
+                data: {
+                    itineraryID : itineraryID
+                },
+                success: function (data) {
+
+                    var result = JSON.parse(data);
+                    console.log(result);
+                    location.replace('./itinerary-activities.php');
+                }
+            });
+        }
+
+
 
     </script>
 </body>

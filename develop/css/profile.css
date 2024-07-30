@@ -228,7 +228,3 @@ div button:hover {
     background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
-
-.card:hover p {
-    font-size: 40px;
-}
