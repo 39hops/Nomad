@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="loginItems">
-                    <input class="glass" placeholder="Password" type="text" name="password" id="password">
+                    <input class="glass" placeholder="Password" type="password" name="password" id="password">
                     <?php if (isset($_GET['error'])) { ?>
                     <p class="error" id="user-error">
                         <?php echo $_GET['error']; ?>

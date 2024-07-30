@@ -3,7 +3,7 @@
 include ("db_connection.php");
 
 
-$sql = "INSERT INTO user (first_name, last_name, username, email, `password`)
+$sql = "INSERT INTO user (first_name, last_name, u_username, email, u_password)
 VALUES (?, ?, ?, ?, ?) ";
 
 $conn_stmt = $conn->stmt_init();
