@@ -34,11 +34,25 @@ if ($result->num_rows > 0) {
 <body>
 
     <div class='search-results-container'>
-        <div class='nav'>
-            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
-            <a href='../php/login.php'>LOGIN</a>
-            <a href='../pages/signup.html'>SIGNUP</a>
-        </div>
+        
+        <?php
+
+        echo "Session LoggedIn value: " . ($_SESSION['loggedIn'] ?? 'Not set');
+
+        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+            echo "<div class='nav'>
+    <span id='nomad'>NOMAD</span>
+    <a href='../php/profile.php'>PROFILE</a>
+    <a href=''>LOGOUT</a>
+    </div>";
+        } else {
+            echo "<div class='nav'>
+    <span id='nomad'>NOMAD</span>
+    <a href='../php/login.php'>LOGIN</a>
+    <a href='../pages/signup.html'>SIGNUP</a>
+    </div>";
+        }
+        ?>
 
         <div class='viewing'>
             now viewing <span id='activity'></span> in <span id='city'></span>
@@ -205,7 +219,7 @@ if ($result->num_rows > 0) {
 
                 message.style.display = "block";
 
-                setTimeout(function() {
+                setTimeout(function () {
                     location.reload();
                 }, 3000);
 
