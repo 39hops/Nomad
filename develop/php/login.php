@@ -27,16 +27,8 @@
 
                 <div class="loginItems">
                     <input class="glass" placeholder="Username" type="text" name="username" id="username">
-                    <?php if (isset($_GET['error'])) { ?>
-                    <p class="error" id="user-error">
-                        <?php echo $_GET['error']; ?>
-                    </p>
-                    <?php } ?>
-                    
-
-
                 </div>
-
+                
                 <div class="loginItems">
                     <input class="glass" placeholder="Password" type="password" name="password" id="password">
                     <?php if (isset($_GET['error'])) { ?>
