@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
     <div class='search-results-container'>
         <div class='nav'>
             <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
-            <a href='../pages/login.html'>LOGIN</a>
+            <a href='../php/login.php'>LOGIN</a>
             <a href='../pages/signup.html'>SIGNUP</a>
         </div>
 
