@@ -11,7 +11,7 @@ if (!isset($_POST['username'])) {
     die("Username field is required.");
 }
 
-$userid = $_SESSION['userid'];
+$userid = $_SESSION['user'][0]->id;
 $updatedUsername = $_POST['username'];
 
 try {
@@ -31,7 +31,7 @@ try {
 
     if ($stmt->execute()) {
         echo "User information updated successfully.";
-        header("Location: ../pages/edit-profile.html");
+        header("Location: ../pages/edit-profile.php?status=usernameUpdateSuccess");
         exit();
     } else {
         echo "Error updating user information: " . $stmt->error;

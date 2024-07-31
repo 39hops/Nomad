@@ -11,7 +11,7 @@ if (!isset($_POST['avi_url'])) {
     die("Please enter a valid image url.");
 }
 
-$userid = $_SESSION['userid'];
+$userid = $_SESSION['user'][0]->id;
 $updatedAvi_url = $_POST['avi_url'];
 
 try {
@@ -30,7 +30,7 @@ try {
 
     if ($stmt->execute()) {
         echo "User information updated successfully";
-        header("Location: ../pages/edit-profile.php?success");
+        header("Location: ../pages/edit-profile.php?status=updateAviSuccess");
         exit();
     } else {
         die("Error updating user information: " . $stmt->error);

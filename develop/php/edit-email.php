@@ -10,7 +10,7 @@ if (!isset($_POST['email'])) {
     die("Email field is required.");
 }
 
-$userid = $_SESSION['userid'];
+$userid = $_SESSION['user'][0]->id;
 $updatedEmail = $_POST['email'];
 
 try {
@@ -30,7 +30,7 @@ try {
 
     if ($stmt->execute()) {
         echo "User information updated successfully.";
-        header("Location: ../pages/edit-profile.html");
+        header("Location: ../pages/edit-profile.php?status=updateEmailSuccess");
         exit();
     } else {
         echo "Error updating user information: " . $stmt->error;
