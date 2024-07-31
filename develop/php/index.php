@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if (isset($_SESSION["user"])) {
+    $userObj = $_SESSION["user"];
+}
+
 include ("db_connection.php");
 
 $countriesArray = [];
@@ -39,11 +43,10 @@ if ($result->num_rows > 0) {
 
             <?php
 
-            echo "Session LoggedIn value: " . ($_SESSION['loggedIn'] ?? 'Not set');
-
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
                 <span id='nomad'>NOMAD</span>
+                <p id='topName'></p>
                 <a href='./profile.php'>PROFILE</a>
                 <a href='./logout.php'>LOGOUT</a>
                 </div>";
@@ -55,7 +58,6 @@ if ($result->num_rows > 0) {
                 </div>";
             }
             ?>
-
 
             <h1 id="discover">discover.</h1>
 
@@ -98,6 +100,11 @@ if ($result->num_rows > 0) {
         var cityTitle = document.getElementById('city-title');
         var actTitle = document.getElementById('activity-title');
         var searchBtn = document.getElementById('search-btn');
+        var topName = document.getElementById('topName');
+
+        if (topName) {
+            topName.innerHTML = <?php echo json_encode($userObj[0]->u_username); ?>;
+        }
 
         for (i = 0; i < dropdown.length; i++) {
             dropdown[i].addEventListener('click', toggle);

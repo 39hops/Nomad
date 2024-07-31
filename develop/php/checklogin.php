@@ -15,7 +15,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         exit();
     } else {
         try {
-            $sql = "SELECT id, first_name, u_password 
+            $sql = "SELECT *
                 FROM user
                 WHERE u_username='$uname'";
             $result = $conn->query($sql);
@@ -23,10 +23,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 $row = $result->fetch_assoc();
                 var_dump($row);
                 if (password_verify($pass, $row["u_password"])){
-                    $_SESSION['userid'] = $row['id'];
-                    $_SESSION['firstname'] = $row['first_name'];
-                    $_SESSION['username'] = $row['username'];
+
+                    $userObj[] = (object) $row;
+                    $_SESSION['user'] = $userObj;
                     $_SESSION['loggedIn'] = true;
+                    
                     header("Location: index.php");
                     exit();
                 } 

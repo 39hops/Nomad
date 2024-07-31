@@ -2,6 +2,10 @@
 
 session_start();
 
+if (isset($_SESSION["user"])) {
+    $userObj = $_SESSION["user"];
+}
+
 $itryActArray = $_SESSION["itinerary-activities"];
 
 ?>
@@ -20,14 +24,25 @@ $itryActArray = $_SESSION["itinerary-activities"];
 
     <div class="activity-container">
 
-        <div class="nav">
-            <span id="nomad">NOMAD</span>
-            <a href="../php/profile.php">PROFILE</a>
-            <a href="../pages/login.html">LOGIN</a>
-            <a href="../pages/signup.html">SIGNUP</a>
-        </div>
+        <?php
 
-        <h1>now viewing <span id='itry-name'></span></h1>
+        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+            echo "<div class='nav'>
+            <a href='./index.php'><span id='nomad'>NOMAD</span></a>
+            <p id='topName'></p>
+            <a href='./profile.php'>PROFILE</a>
+            <a href='./logout.php'>LOGOUT</a>
+            </div>";
+        } else {
+            echo "<div class='nav'>
+            <span id='nomad'>NOMAD</span>
+            <a href='../php/login.php'>LOGIN</a>
+            <a href='../pages/signup.html'>SIGNUP</a>
+            </div>";
+        }
+        ?>
+
+        <h1 id="itry-name"></h1>
 
         <div class="activity-wrapper"></div>
 
@@ -37,12 +52,15 @@ $itryActArray = $_SESSION["itinerary-activities"];
         var itryActArray = <?php echo json_encode($itryActArray) ?>;
         var wrapper = document.querySelector('.activity-wrapper');
         var span = document.getElementById('itry-name');
-        span.innerHTML = itryActArray[0].it_name;
+        span.innerHTML = itryActArray[0];
+        var topName = document.getElementById('topName');
+
+        topName.innerText = <?php echo json_encode($userObj[0]->u_username) ?>;
 
         console.log(itryActArray);
 
-        if (itryActArray && itryActArray.length > 0) {
-            for (i = 0; i < itryActArray.length; i++) {
+        if (itryActArray && itryActArray.length > 1) {
+            for (i = 1; i < itryActArray.length; i++) {
                 var card = document.createElement('div');
                 var imgWrapper = document.createElement('div');
                 var img = document.createElement('img');
@@ -58,7 +76,7 @@ $itryActArray = $_SESSION["itinerary-activities"];
                 title.classList.add('title');
 
                 img.src = itryActArray[i].image;
-                title.innerText = itryActArray[i].it_name;
+                title.innerText = itryActArray[i].a_name;
                 address.innerText = itryActArray[i].address;
                 desc.innerText = itryActArray[i].a_description
 

@@ -1,10 +1,15 @@
 <?php
 
+session_start();
+
+$userObj = $_SESSION["user"];
+$userID = $userObj[0]->id;
+
 include ("db_connection.php");
 
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
-WHERE user_id = 1
+WHERE user_id = $userID
 ORDER BY date_created DESC";
 $result = $conn->query($sql);
 
@@ -31,14 +36,14 @@ if ($result->num_rows > 0) {
     <div class="profile-container">
         <div class="nav">
             <a href="../php/index.php"><span id="nomad">NOMAD</span></a>
-            <a href="../php/login.php">LOGIN</a>
-            <a href="../pages/signup.html">SIGNUP</a>
+            <p id="topName"></p>
+            <a href="./logout.php">LOGOUT</a>
         </div>
 
         <div class="user">
             <img id="avi" src="../images/default-anouar-olh.jpg">
-            <h1 id="username">username</h1>
-            <h2 id="bio">bio</h2>
+            <h1 id="username"></h1>
+            <h2 id="bio"></h2>
         </div>
 
         <div class="functions">
@@ -67,6 +72,9 @@ if ($result->num_rows > 0) {
         var closeCreate = document.querySelector('.close');
         var itinerariesArray = <?php echo json_encode($itinerariesArray) ?>;
         var itryContainer = document.querySelector('.itry-container');
+        var usernameEl = document.getElementById('username');
+        var bioEl = document.getElementById('bio');
+        var topName = document.getElementById('topName');
 
         edit.addEventListener('click', editProfile);
         create.addEventListener('click', openModal);
@@ -85,6 +93,15 @@ if ($result->num_rows > 0) {
         }
 
         function onLoad() {
+
+            usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+            topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+
+            var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
+
+            if (bioVal) {
+                bioEl.innerText = bioVal;
+            }
 
             console.log(itinerariesArray);
 
@@ -115,19 +132,21 @@ if ($result->num_rows > 0) {
 
             // console.log(e);
             // console.log(e.target);
-            console.log((e.target).dataset.itineraryId);
+            // console.log(((e.target).firstChild).innerText);
+            // console.log((e.target).dataset.itineraryId);
+
             var itineraryID = (e.target).dataset.itineraryId;
+            var itineraryName = ((e.target).firstChild).innerText;
 
             $.ajax({
                 type: "POST",
                 url: "./get-itinerary-activities.php",
                 data: {
-                    itineraryID : itineraryID
+                    itineraryID : itineraryID,
+                    itineraryName : itineraryName
                 },
                 success: function (data) {
 
-                    var result = JSON.parse(data);
-                    console.log(result);
                     location.replace('./itinerary-activities.php');
                 }
             });
