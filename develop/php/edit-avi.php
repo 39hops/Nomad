@@ -2,25 +2,17 @@
 session_start();
 include("db_connection.php");
 
-
+// Not really necessary since you can't access this page if you're not logged in
 if (!isset($_SESSION['userid'])) {
     die("Must be logged in to update user information.");
 }
 
+if (!isset($_POST['avi_url'])) {
+    die("Please enter a valid image url.");
+}
 
-// $defaultImageUrl = '../images/default-anouar-olh.jpg';
-
-
-// function getImageUrl($img) {
-//     if (isset($_POST['avi_url']) && !empty(trim($_POST['avi_url']))) {
-//         $newImageUrl = trim($_POST['avi_url']);
-//         return $newImageUrl;
-//     }
-//     return $img;
-// }
-
-// $userid = $_SESSION['userid'];
-// $updatedAvi_url = getImageUrl($defaultImageUrl);
+$userid = $_SESSION['userid'];
+$updatedAvi_url = $_POST['avi_url'];
 
 try {
     if ($conn->connect_error) {
@@ -37,17 +29,17 @@ try {
     $stmt->bind_param("si", $updatedAvi_url, $userid);
 
     if ($stmt->execute()) {
-        header("Location: edit-profile.php?status=success");
+        echo "User information updated successfully";
+        header("Location: ../pages/edit-profile.php?success");
         exit();
     } else {
-        header("Location: edit-profile.php?status=error");
-        exit();
+        die("Error updating user information: " . $stmt->error);
     }
 
     $stmt->close();
     $conn->close();
 } catch (Exception $e) {
-    header("Location: edit-profile.php?status=error");
+    header("Location: ../pages/edit-profile.php?status=error");
     exit();
 }
 ?>

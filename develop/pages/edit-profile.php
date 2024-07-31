@@ -19,14 +19,13 @@
 
         <div class="content-wrapper">
             <div class="avi">
-                <?php ?>
                 <img name="avi_url" id="avi" src="../images/default-anouar-olh.jpg">
             </div>
             <div class="edit-wrapper">
                 <div id="edit-avi">
-                    <form type="submit" method="" action="">
+                    <form type="submit" method="post" action="../php/edit-avi.php">
                         <input name="avi_url" type="text" placeholder="avi.url">
-                        <button type="submit" method="post" action="edit-avi.php">x</button>
+                        <button>x</button>
                     </form>
                 </div>
 

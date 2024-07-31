@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="functions">
-            <a href="../pages/edit-profile.html"><img class="icon" id="edit" src="../images/edit.png"></a>
+            <a href="../pages/edit-profile.php"><img class="icon" id="edit" src="../images/edit.png"></a>
             <img class="icon" id="create" src="../images/create.png">
         </div>
 
