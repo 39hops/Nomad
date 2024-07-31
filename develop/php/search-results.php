@@ -3,8 +3,23 @@ include ("db_connection.php");
 
 session_start();
 
-$userObj = $_SESSION['user'];
-$userID = $userObj[0]->id;
+if (isset($_SESSION["user"])) {
+    $userObj = $_SESSION["user"];
+    $userID = $userObj[0]->id;
+
+    $itinerariesArray = [];
+    $sql = "SELECT * FROM itinerary
+    WHERE user_id = $userID
+    ORDER BY date_created ASC";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $itinerariesArray[] = (object) $row;
+        }
+    }
+}
 
 $cityID = $_GET['cityID'];
 $activity = $_GET['activity'];
@@ -23,19 +38,6 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $activitiesArray[] = (object) $row;
-    }
-}
-
-$itinerariesArray = [];
-$sql = "SELECT * FROM itinerary
-WHERE user_id = $userID
-ORDER BY date_created ASC";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $itinerariesArray[] = (object) $row;
     }
 }
 
@@ -61,14 +63,14 @@ if ($result->num_rows > 0) {
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
-            <a href='../index.php><span id='nomad'>NOMAD</span></a>
+            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
             <p id='topName'></p>
-            <a href='./profile.php'>PROFILE</a>
-            <a href='./logout.php'>LOGOUT</a>
+            <a href='../php/profile.php'>PROFILE</a>
+            <a href='../php/logout.php'>LOGOUT</a>
             </div>";
         } else {
             echo "<div class='nav'>
-            <a href='../index.php><span id='nomad'>NOMAD</span></a>
+            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
             <a href='../php/login.php'>LOGIN</a>
             <a href='../pages/signup.html'>SIGNUP</a>
             </div>";
@@ -105,7 +107,12 @@ if ($result->num_rows > 0) {
     const activity = document.getElementById('activity');
     const city = document.getElementById('city');
     const cityName = <?php echo json_encode($_GET['cityName']) ?>;
-    var itinerariesArray = <?php echo json_encode($itinerariesArray); ?>;
+    var itinerariesArray = <?php
+    if ((isset($_SESSION['user']))) {
+        echo json_encode($itinerariesArray);
+    } else {
+        echo "0";
+    } ?>;
     var modalBG = document.querySelector('.modal-bg');
     var addModal = document.getElementById('addModal');
     var close = document.querySelector('.close');
@@ -113,9 +120,16 @@ if ($result->num_rows > 0) {
     var p = document.getElementById('message');
     var message = document.querySelector('.success');
     var topName = document.getElementById('topName');
+    var username = <?php
+    if ((isset($_SESSION['user']))) {
+        echo json_encode($userObj[0]->u_username);
+    } else {
+        echo "0";
+    }
+    ?>;
 
-    if (topName) {
-        topName.innerHTML = <?php echo json_encode($userObj[0]->u_username); ?>;
+    if (topName !== null) {
+        topName.innerHTML = username;
     }
 
     console.log(activitiesArray);
