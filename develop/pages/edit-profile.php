@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
             <p id='topName'></p>
             <a href='../php/profile.php'>PROFILE</a>
             <a href='../php/logout.php'>LOGOUT</a>
-        </div>"
+        </div>
 
         <div class="content-wrapper">
             <div class="avi">
