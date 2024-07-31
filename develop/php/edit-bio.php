@@ -10,7 +10,7 @@ if (!isset($_POST['bio'])) {
     die("Bio field is required.");
 }
 
-$userid = $_SESSION['userid'];
+$userid = $_SESSION['user'][0]->id;
 $updatedBio = $_POST['bio'];
 
 try {
@@ -30,7 +30,7 @@ try {
 
     if ($stmt->execute()) {
         echo "User information updated successfully.";
-        header("Location: ../pages/edit-profile.html");
+        header("Location: ../pages/edit-profile.php?status=updateBioSuccess");
         exit();
     } else {
         echo "Error updating user information: " . $stmt->error;

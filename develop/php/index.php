@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
 
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
-                <a href='../index.php><span id='nomad'>NOMAD</span></a>
+                <span id='nomad'>NOMAD</span>
                 <p id='topName'></p>
                 <a href='./profile.php'>PROFILE</a>
                 <a href='./logout.php'>LOGOUT</a>

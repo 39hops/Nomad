@@ -1,3 +1,27 @@
+<?php
+
+session_start();
+
+$userObj = $_SESSION["user"];
+$userID = $userObj[0]->id;
+
+include ("../php/db_connection.php");
+
+$userObj = array();
+$sql = "SELECT * FROM user
+WHERE id = $userID";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $userObj[] = (object) $row;
+        $_SESSION['user'] = $userObj;
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +35,16 @@
 <body>
 
     <div class="edit-container">
-        <div class="nav">
-            <a href="../php/index.php"><span id="nomad">NOMAD</span></a>
-            <a href="../php/login.php">LOGIN</a>
-            <a href=".signup.html">SIGNUP</a>
-        </div>
+        <div class='nav'>
+            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
+            <p id='topName'></p>
+            <a href='../php/profile.php'>PROFILE</a>
+            <a href='../php/logout.php'>LOGOUT</a>
+        </div>"
 
         <div class="content-wrapper">
             <div class="avi">
-                <img name="avi_url" id="avi" src="../images/default-anouar-olh.jpg">
+                <img id="avi" src="">
             </div>
             <div class="edit-wrapper">
                 <div id="edit-avi">
@@ -59,6 +84,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var topName = document.getElementById('topName');
+        var avi = document.getElementById('avi');
+        var aviUrl = <?php echo json_encode($userObj[0]->avi_url)?>;
+
+        topName.innerHTML = <?php echo json_encode($userObj[0]->u_username) ?>;
+        
+        if (aviUrl) {
+            avi.src = aviUrl;
+        } else {
+            avi.src = '../images/default-anouar-olh.jpg';
+        }
+
+        console.log(aviUrl);
+
+    </script>
 
 </body>
 
