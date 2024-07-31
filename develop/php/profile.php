@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="user">
-            <img id="avi" src="../images/default-anouar-olh.jpg">
+            <img id="avi" src="">
             <h1 id="username"></h1>
             <h2 id="bio"></h2>
         </div>
@@ -75,6 +75,7 @@ if ($result->num_rows > 0) {
         var usernameEl = document.getElementById('username');
         var bioEl = document.getElementById('bio');
         var topName = document.getElementById('topName');
+        var avi = document.getElementById('avi');
 
         edit.addEventListener('click', editProfile);
         create.addEventListener('click', openModal);
@@ -96,11 +97,17 @@ if ($result->num_rows > 0) {
 
             usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
             topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
-
             var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
+            var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
 
             if (bioVal) {
                 bioEl.innerText = bioVal;
+            }
+
+            if (aviUrl) {
+                avi.src = aviUrl;
+            } else {
+                avi.src = '../images/default-anouar-olh.jpg';
             }
 
             console.log(itinerariesArray);

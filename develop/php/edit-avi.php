@@ -2,11 +2,6 @@
 session_start();
 include("db_connection.php");
 
-// Not really necessary since you can't access this page if you're not logged in
-if (!isset($_SESSION['userid'])) {
-    die("Must be logged in to update user information.");
-}
-
 if (!isset($_POST['avi_url'])) {
     die("Please enter a valid image url.");
 }

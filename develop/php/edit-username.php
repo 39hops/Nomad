@@ -2,11 +2,6 @@
 session_start();
 include("db_connection.php");
 
-// don't necessarily need this, if you're not logged in you can't access this page
-if (!isset($_SESSION['userid'])) {
-    die("Must be logged in to update user information.");
-}
-
 if (!isset($_POST['username'])) {
     die("Username field is required.");
 }
