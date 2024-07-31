@@ -1,4 +1,5 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
 @font-face {
     font-family: alexana;
     src: url(../fonts/Alexana.ttf);
@@ -87,7 +88,8 @@ a {
     font-size: 45px;
 }
 
-.nav a, #topName {
+.nav a,
+#topName {
     color: white;
     font-family: inter;
     text-transform: uppercase;
@@ -158,12 +160,15 @@ a {
     transform: rotate(-40deg);
     transition: 0.5s;
 }
+
 .dropdown input:hover {
-   border: 2px solid white;
+    border: 2px solid white;
 }
+
 .dropdown input:hover {
     color: white;
 }
+
 .dropdown.active::after {
     right: 28px;
 }
@@ -178,9 +183,9 @@ a {
     font-size: 16px;
     font-family: inter;
     background: rgba(255, 255, 255, 0.5);
-    
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
     outline: none;
     border: none;
     cursor: pointer;
@@ -223,10 +228,14 @@ a {
     margin: 3px;
     font-size: 20px;
     cursor: pointer;
-    transition: .3s ease-in-out;
+    transition: .3s;
+    position: absolute;
+    transform: translate(-20px, -30px);
 }
+
 #search-btn:hover {
-    transform: translateY(-5px);
+    position: absolute;
+    transform: translate(-20px, -35px);
     border: 2px solid whitesmoke;
     background-color: #12262d;
 }
