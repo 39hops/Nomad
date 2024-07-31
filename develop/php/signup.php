@@ -3,7 +3,7 @@
 include ("db_connection.php");
 
 
-$sql = "INSERT INTO user (first_name, last_name, u_username, email, u_password)
+$sql = "INSERT INTO user (first_name, last_name, u_username, email, `u_password`)
 VALUES (?, ?, ?, ?, ?) ";
 
 $conn_stmt = $conn->stmt_init();
@@ -21,9 +21,9 @@ $password);
 
 
  if ($conn_stmt->execute()){
-    header("Location: ../pages/login.html");
+    header("Location: ../php/login.php");
  } else {
-    die($conn->error . "");
+    die($conn->error . " ");
  }
 
 $conn->close();
