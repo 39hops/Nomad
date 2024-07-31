@@ -46,39 +46,41 @@ if ($result->num_rows > 0) {
             <div class="avi">
                 <img id="avi" src="">
             </div>
-            <div class="edit-wrapper">
+            <div class="edit-wrapper glass">
                 <div id="edit-avi">
                     <form type="submit" method="post" action="../php/edit-avi.php">
                         <input name="avi_url" type="text" placeholder="avi.url">
-                        <button>x</button>
+                        <button><i class="fa-solid fa-check"></i></button>
                     </form>
                 </div>
 
                 <div id="edit-username">
                     <form type="submit" method="post" action="../php/edit-username.php">
                         <input name="username" id="username" type="text" placeholder="username">
-                        <button>x</button>
+                        <button><i class="fa-solid fa-check"></i></button>
                     </form>
                 </div>
 
                 <div id="edit-email">
                     <form method="post" action="../php/edit-email.php">
                         <input name="email" type="text" placeholder="email">
-                        <button type="submit">x</button>
+                        <button type="submit"><i class="fa-solid fa-check"></i></button>
                     </form>
                 </div>
 
                 <div id="edit-bio">
                     <form method="post" action="../php/edit-bio.php">
                         <input name="bio" type="text" placeholder="bio">
-                        <button type="submit" method="post" action="edit-bio.php">x</button>
+                        <button type="submit" method="post" action="edit-bio.php"><i
+                                class="fa-solid fa-check"></i></button>
                     </form>
                 </div>
 
                 <div id="edit-password">
                     <form method="post" action="../php/edit-password.php">
                         <input name="password" type="text" placeholder="password">
-                        <button type="submit" method="post" action="edit-password.php">x</button>
+                        <button type="submit" method="post" action="edit-password.php"><i
+                                class="fa-solid fa-check"></i></button>
                     </form>
                 </div>
             </div>
@@ -86,20 +88,19 @@ if ($result->num_rows > 0) {
     </div>
 
     <script>
-        var topName = document.getElementById('topName');
-        var avi = document.getElementById('avi');
-        var aviUrl = <?php echo json_encode($userObj[0]->avi_url)?>;
+    var topName = document.getElementById('topName');
+    var avi = document.getElementById('avi');
+    var aviUrl = <?php echo json_encode($userObj[0]->avi_url)?>;
 
-        topName.innerHTML = <?php echo json_encode($userObj[0]->u_username) ?>;
-        
-        if (aviUrl) {
-            avi.src = aviUrl;
-        } else {
-            avi.src = '../images/default-anouar-olh.jpg';
-        }
+    topName.innerHTML = <?php echo json_encode($userObj[0]->u_username) ?>;
 
-        console.log(aviUrl);
+    if (aviUrl) {
+        avi.src = aviUrl;
+    } else {
+        avi.src = '../images/default-anouar-olh.jpg';
+    }
 
+    console.log(aviUrl);
     </script>
 
 </body>

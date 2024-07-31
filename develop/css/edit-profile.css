@@ -1,8 +1,11 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
 @font-face {
     font-family: alexana;
     src: url(../fonts/Alexana.ttf);
 }
-
+/* background-color: #12262d;
+    background-color: #36827f; */
 @font-face {
     font-family: inter;
     src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
@@ -16,7 +19,15 @@
 }
 
 body {
-    background-color: #003566;
+    background-color: #12262d;
+}
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .nav {
@@ -58,6 +69,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    
 }
 
 .avi {
@@ -76,6 +88,7 @@ body {
     width: fit-content;
     padding: 20px;
     height: fit-content;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form input {
@@ -86,6 +99,7 @@ form input {
     margin: 10px;
     padding: 20px;
     cursor: pointer;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 form button {
@@ -94,4 +108,25 @@ form button {
     border-radius: 50%;
     border: none;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+    background-color: white;
+}
+
+form button::before {
+    color: white;
+}
+
+form button:hover {
+    border: 2px solid rgb(0, 0, 0);
+    background-color: #36827f;
+
+    i {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+i {
+    color: black;
+    font-size: 20px;
 }
