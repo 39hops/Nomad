@@ -80,6 +80,27 @@ h1 {
     color: #36827f;
 }
 
+.delete-wrapper {
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#delete-itry {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#delete-itry:hover {
+    background: rgb(54, 130, 127);
+    transform: translateY(-2px);
+}
+
 .card {
     /* border: solid black 1px; */
     height: 300px;
@@ -89,6 +110,7 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .card:hover {
@@ -111,7 +133,7 @@ img {
 }
 
 .content {
-    border: solid white 1px;
+    /* border: solid white 1px; */
     margin: 10px;
     padding: 10px;
     font-size: 20px;
@@ -123,4 +145,19 @@ img {
 
 .content p {
     margin: 5px;
+}
+
+.icon {
+    /* border: solid white 1px; */
+    margin-right: 10px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon:hover {
+    background: rgb(54, 130, 127);
+    transform: translateY(-2px);
 }

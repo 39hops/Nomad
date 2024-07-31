@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 if (isset($_SESSION["user"])) {
     $userObj = $_SESSION["user"];
 }
@@ -45,14 +46,14 @@ if ($result->num_rows > 0) {
 
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
-                <span id='nomad'>NOMAD</span>
+                <a href='../index.php><span id='nomad'>NOMAD</span></a>
                 <p id='topName'></p>
                 <a href='./profile.php'>PROFILE</a>
                 <a href='./logout.php'>LOGOUT</a>
                 </div>";
             } else {
                 echo "<div class='nav'>
-                <span id='nomad'>NOMAD</span>
+                <a href='../index.php><span id='nomad'>NOMAD</span></a>
                 <a href='../php/login.php'>LOGIN</a>
                 <a href='../pages/signup.html'>SIGNUP</a>
                 </div>";
@@ -84,7 +85,7 @@ if ($result->num_rows > 0) {
                 </div>
 
                 <div class="btn-container">
-                <i class="glass fa-solid fa-magnifying-glass" id="search-btn"></i>
+                    <i class="glass fa-solid fa-magnifying-glass" id="search-btn"></i>
                 </div>
 
             </div>
@@ -222,31 +223,23 @@ if ($result->num_rows > 0) {
 
         function search() {
 
-            console.log('searching . . .');
+            // console.log('searching . . .');
 
-            console.log(cityTitle.value);
-            console.log(actTitle.value);
+            // console.log(cityTitle.dataset.qry);
+            // console.log((actTitle.value).toLowerCase());
 
-            //this should be turned into real client side validation later
-            
-            if (actTitle.value == '' || cityTitle.value == '') {
-                console.log('Please select a country, city, and activity');
+            var cityName = cityTitle.value;
+            var cityID = cityTitle.dataset.qry;
+            var activity = (actTitle.value).toLowerCase();
+
+            if (cityID && activity) {
+
+                var url = './search-results.php?cityName=' + cityName + '&cityID=' + cityID + '&activity=' + activity;
+                window.location.replace(url);
+
+            } else {
+                console.log('error: empty field');
             }
-
-            $.ajax({
-                type: "POST",
-                url: "./get-activities.php",
-                data: {
-                    activity: (actTitle.value).toLowerCase(),
-                    cityID : cityTitle.dataset.qry
-                },
-                success: function (data) {
-
-                    var result = JSON.parse(data);
-                    console.log(result);
-                    location.replace('./search-results.php');
-                }
-            });
 
         }
 

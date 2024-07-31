@@ -136,20 +136,12 @@ if ($result->num_rows > 0) {
             // console.log((e.target).dataset.itineraryId);
 
             var itineraryID = (e.target).dataset.itineraryId;
-            var itineraryName = ((e.target).firstChild).innerText;
+            var itineraryName = (e.target).firstChild.innerText;
 
-            $.ajax({
-                type: "POST",
-                url: "./get-itinerary-activities.php",
-                data: {
-                    itineraryID : itineraryID,
-                    itineraryName : itineraryName
-                },
-                success: function (data) {
+            var url = './itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
 
-                    location.replace('./itinerary-activities.php');
-                }
-            });
+            window.location.replace(url);
+
         }
 
 
