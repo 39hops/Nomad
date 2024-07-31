@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
                 </div>";
             } else {
                 echo "<div class='nav'>
-                <a href='../index.php><span id='nomad'>NOMAD</span></a>
+                <span id='nomad'>NOMAD</span>
                 <a href='../php/login.php'>LOGIN</a>
                 <a href='../pages/signup.html'>SIGNUP</a>
                 </div>";
@@ -102,9 +102,17 @@ if ($result->num_rows > 0) {
         var actTitle = document.getElementById('activity-title');
         var searchBtn = document.getElementById('search-btn');
         var topName = document.getElementById('topName');
+        var username = <?php 
+        if ((isset($_SESSION['user']))) {
+            echo json_encode($userObj[0]->u_username); 
+        } else {
+            echo "0";
+        }
+        
+        ?>;
 
-        if (topName) {
-            topName.innerHTML = <?php echo json_encode($userObj[0]->u_username); ?>;
+        if (topName !== null) {
+            topName.innerHTML = username;
         }
 
         for (i = 0; i < dropdown.length; i++) {

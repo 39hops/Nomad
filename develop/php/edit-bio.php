@@ -2,10 +2,6 @@
 session_start();
 include("db_connection.php");
 
-if (!isset($_SESSION['userid'])) {
-    die("Must be logged in to update user information.");
-}
-
 if (!isset($_POST['bio'])) {
     die("Bio field is required.");
 }
