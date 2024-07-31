@@ -4,6 +4,7 @@ const lname = document.getElementById("lname");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
+const passwordRetype = document.getElementById("passwordretype");
 
 const showError = (element, message) => {
   const errorMessage = element.nextElementSibling;
@@ -97,12 +98,26 @@ function validatePassword() {
     return true;
   }
 }
+function validateRetypedPassword() {
+  const passwordRetypeValue = passwordRetype.value.trim();
+  if (passwordRetype.value == "") {
+    showError(passwordRetype, "Re-type password. ");
+    return false;
+  } else if (passwordRetypeValue !== password.value) {
+    showError(passwordRetype, "Passwords do not match.");
+    return false;
+  } else {
+    removeError(passwordRetype);
+    return true;
+  }
+}
 
 email.addEventListener("input", validateEmail);
 username.addEventListener("input", validateUsername);
 password.addEventListener("input", validatePassword);
 fname.addEventListener("input", validateFirstName);
 lname.addEventListener("input", validateLastName);
+passwordRetype.addEventListener("input", validateRetypedPassword);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -111,12 +126,14 @@ form.addEventListener("submit", (e) => {
   let checkPassword = validatePassword();
   let checkFirstName = validateFirstName();
   let checkLastName = validateLastName();
+  let checkRetypedPassword = validateRetypedPassword();
   if (
     checkEmail &&
     checkUsername &&
     checkPassword &&
     checkFirstName &&
-    checkLastName === true
+    checkLastName &&
+    checkRetypedPassword === true
   ) {
     document.forms["form"].submit();
   }

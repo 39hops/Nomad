@@ -1,3 +1,4 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 @font-face {
     font-family: alexana;
     src: url(../fonts/Alexana.ttf);
@@ -135,7 +136,7 @@ a {
     right: 28px;
     width: 12px;
     height: 2px;
-    background: #003566;
+    background: #12262d;
     z-index: 10;
     transform: rotate(40deg);
     transition: 0.5s;
@@ -152,12 +153,17 @@ a {
     right: 20px;
     width: 12px;
     height: 2px;
-    background: #003566;
+    background: #12262d;
     z-index: 10;
     transform: rotate(-40deg);
     transition: 0.5s;
 }
-
+.dropdown input:hover {
+   border: 2px solid white;
+}
+.dropdown input:hover {
+    color: white;
+}
 .dropdown.active::after {
     right: 28px;
 }
@@ -172,10 +178,13 @@ a {
     font-size: 16px;
     font-family: inter;
     background: rgba(255, 255, 255, 0.5);
+    
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    
     outline: none;
     border: none;
     cursor: pointer;
+    transition: all ease-in-out 0.2s;
 }
 
 .dropdown .option {
@@ -204,14 +213,20 @@ a {
 }
 
 .dropdown .option div:hover {
-    background: #003566;
+    background: #12262d;
     color: white;
 }
 
 #search-btn {
     border-radius: 50%;
-    padding: 10px;
-    height: 50px;
-    width: 50px;
+    padding: 15px;
+    margin: 3px;
+    font-size: 20px;
     cursor: pointer;
+    transition: .3s ease-in-out;
+}
+#search-btn:hover {
+    transform: translateY(-5px);
+    border: 2px solid whitesmoke;
+    background-color: #12262d;
 }

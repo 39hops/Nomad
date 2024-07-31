@@ -83,8 +83,8 @@ if ($result->num_rows > 0) {
                     </div>
                 </div>
 
-                <div>
-                    <img class="glass" src="../images/search.png" id="search-btn">
+                <div class="btn-container">
+                <i class="glass fa-solid fa-magnifying-glass" id="search-btn"></i>
                 </div>
 
             </div>
@@ -228,7 +228,7 @@ if ($result->num_rows > 0) {
             console.log(actTitle.value);
 
             //this should be turned into real client side validation later
-
+            
             if (actTitle.value == '' || cityTitle.value == '') {
                 console.log('Please select a country, city, and activity');
             }
@@ -238,7 +238,7 @@ if ($result->num_rows > 0) {
                 url: "./get-activities.php",
                 data: {
                     activity: (actTitle.value).toLowerCase(),
-                    cityID: cityTitle.dataset.qry
+                    cityID : cityTitle.dataset.qry
                 },
                 success: function (data) {
 
