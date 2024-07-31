@@ -5,14 +5,32 @@ session_start();
 
 $userObj = $_SESSION['user'];
 $userID = $userObj[0]->id;
-$searchResults = $_SESSION["search-results"];
 
-$json_output = json_encode($searchResults);
+$cityID = $_GET['cityID'];
+$activity = $_GET['activity'];
+
+$activitiesArray = [];
+$sql = "SELECT *
+FROM $activity
+JOIN activity
+ON $activity.activity_id = activity.a_id
+JOIN city
+ON activity.city_id = city.id
+WHERE city.id = $cityID";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $activitiesArray[] = (object) $row;
+    }
+}
 
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
 WHERE user_id = $userID
 ORDER BY date_created ASC";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -20,6 +38,7 @@ if ($result->num_rows > 0) {
         $itinerariesArray[] = (object) $row;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,21 +56,24 @@ if ($result->num_rows > 0) {
 
     <div class='search-results-container'>
 
+
         <?php
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
-            <span id='nomad'>NOMAD</span>
-            <a href='../php/profile.php'>PROFILE</a>
+            <a href='../index.php><span id='nomad'>NOMAD</span></a>
+            <p id='topName'></p>
+            <a href='./profile.php'>PROFILE</a>
             <a href='./logout.php'>LOGOUT</a>
             </div>";
         } else {
             echo "<div class='nav'>
-            <span id='nomad'>NOMAD</span>
+            <a href='../index.php><span id='nomad'>NOMAD</span></a>
             <a href='../php/login.php'>LOGIN</a>
             <a href='../pages/signup.html'>SIGNUP</a>
             </div>";
         }
+
         ?>
 
         <div class='viewing'>
@@ -77,12 +99,12 @@ if ($result->num_rows > 0) {
 </html>
 
 <script>
-    var data = <?php echo $json_output; ?>;
+    var activitiesArray = <?php echo json_encode($activitiesArray); ?>;
     const container = document.querySelector('.search-results-container');
     const results = document.createElement('div');
     const activity = document.getElementById('activity');
     const city = document.getElementById('city');
-    const cityName = data[1].c_name;
+    const cityName = <?php echo json_encode($_GET['cityName']) ?>;
     var itinerariesArray = <?php echo json_encode($itinerariesArray); ?>;
     var modalBG = document.querySelector('.modal-bg');
     var addModal = document.getElementById('addModal');
@@ -90,13 +112,15 @@ if ($result->num_rows > 0) {
     var form = document.getElementById('select-itry');
     var p = document.getElementById('message');
     var message = document.querySelector('.success');
+    var topName = document.getElementById('topName');
 
-    // below can be deleted later
-    // console.log(data);
-    // console.log(data[1]);
-    // console.log(data[1].a_id);
+    if (topName) {
+        topName.innerHTML = <?php echo json_encode($userObj[0]->u_username); ?>;
+    }
 
-    activity.innerHTML = data[0];
+    console.log(activitiesArray);
+
+    activity.innerHTML = <?php echo json_encode($_GET['activity']); ?>;
     city.innerHTML = cityName;
 
     close.addEventListener('click', closeModal);
@@ -105,18 +129,18 @@ if ($result->num_rows > 0) {
     function loadSearch() {
 
 
-        for (let i = 1; i < data.length; i++) {
+        for (let i = 0; i < activitiesArray.length; i++) {
             var card = document.createElement('div');
             var aName = document.createElement('div');
             var aDescription = document.createElement('div');
             var aImage = document.createElement('img');
             var addBtn = document.createElement('div');
 
-            aImage.src = data[i].image;
-            aDescription.innerHTML = data[i].a_description;
-            aName.innerHTML = data[i].a_name;
+            aImage.src = activitiesArray[i].image;
+            aDescription.innerHTML = activitiesArray[i].a_description;
+            aName.innerHTML = activitiesArray[i].a_name;
             addBtn.innerHTML = '+';
-            card.dataset.qry = data[i].a_id;
+            card.dataset.qry = activitiesArray[i].a_id;
 
             card.classList.add('card');
             card.classList.add('glass');
