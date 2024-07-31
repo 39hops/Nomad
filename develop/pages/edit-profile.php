@@ -14,46 +14,45 @@
         <div class="nav">
             <a href="../php/index.php"><span id="nomad">NOMAD</span></a>
             <a href="../php/login.php">LOGIN</a>
-            <a href="../pages/signup.html">SIGNUP</a>
+            <a href=".signup.html">SIGNUP</a>
         </div>
 
         <div class="content-wrapper">
             <div class="avi">
-                <img id="avi" src="../images/default-anouar-olh.jpg">
+                <img name="avi_url" id="avi" src="../images/default-anouar-olh.jpg">
             </div>
-
             <div class="edit-wrapper">
                 <div id="edit-avi">
-                    <form>
-                        <input type="text" placeholder="avi.url">
-                        <button type="submit" method="post" action="edit-avi.php">x</button>
+                    <form type="submit" method="post" action="../php/edit-avi.php">
+                        <input name="avi_url" type="text" placeholder="avi.url">
+                        <button>x</button>
                     </form>
                 </div>
 
                 <div id="edit-username">
-                    <form>
-                        <input type="text" placeholder="username">
-                        <button type="submit" method="post" action="edit-username.php">x</button>
+                    <form type="submit" method="post" action="../php/edit-username.php">
+                        <input name="username" id="username" type="text" placeholder="username">
+                        <button>x</button>
                     </form>
                 </div>
 
                 <div id="edit-email">
-                    <form>
-                        <input type="text" placeholder="email">
-                        <button type="submit" method="post" action="edit-email.php">x</button>
+                    <form method="post" action="../php/edit-email.php">
+                        <input name="email" type="text" placeholder="email">
+                        <button type="submit">x</button>
                     </form>
                 </div>
 
                 <div id="edit-bio">
-                    <form>
-                        <input type="text" placeholder="bio">
+                    <form method="post" action="../php/edit-bio.php">
+                        <input name="bio" type="text" placeholder="bio">
                         <button type="submit" method="post" action="edit-bio.php">x</button>
                     </form>
                 </div>
 
                 <div id="edit-password">
-                    <form>
-                        <input type="text" placeholder="password">
+                    <form method="post" action="../php/edit-password.php">
+                        <input name="password" type="text" placeholder="password">
                         <button type="submit" method="post" action="edit-password.php">x</button>
                     </form>
                 </div>

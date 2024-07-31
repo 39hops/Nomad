@@ -11,13 +11,14 @@ $conn_stmt = $conn->stmt_init();
 if(! $conn_stmt->prepare($sql)){
     die("SQL Error: " . $conn->error);
 };
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = $_POST['password'];
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 $conn_stmt->bind_param("sssss",
 $_POST["fname"],
 $_POST['lname'],
 $_POST['username'],
 $_POST['email'],
-$password);
+$passwordHash);
 
 
  if ($conn_stmt->execute()){
