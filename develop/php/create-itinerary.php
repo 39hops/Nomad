@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include ("db_connection.php");
 
 
@@ -16,7 +18,7 @@ if (!isset($_POST["it_name"]) || empty($_POST["it_name"])) {
 }
 
 $it_name = $_POST["it_name"];
-$user_id = 1;
+$user_id = $_SESSION["userid"];
 
 if (!$conn_stmt->bind_param("si", $it_name, $user_id)) {
     die("SQL Error (bind_param): " . $conn_stmt->error);

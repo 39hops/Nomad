@@ -87,9 +87,10 @@ a {
     font-size: 45px;
 }
 
-.nav a {
+.nav a, #topName {
     color: white;
     font-family: inter;
+    text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;

@@ -1,11 +1,13 @@
 <?php
-if (isset($_POST['itineraryID'])) {
+if (isset($_POST['itineraryID']) && isset($_POST['itineraryName'])) {
 
     $itineraryID = $_POST['itineraryID'];
+    $itineraryName = $_POST['itineraryName'];
 
     include ("db_connection.php");
 
     $itryActArray = [];
+
     $sql = "SELECT *
     FROM itinerary_activity
     JOIN activity ON itinerary_activity.activity_id = activity.a_id
@@ -19,6 +21,8 @@ if (isset($_POST['itineraryID'])) {
             $itryActArray[] = (object) $row;
         }
     }
+
+    array_unshift($itryActArray, $itineraryName);
 
     session_start();
     $_SESSION['itinerary-activities']=$itryActArray;

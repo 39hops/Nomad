@@ -3,13 +3,15 @@ include ("db_connection.php");
 
 session_start();
 
+$userObj = $_SESSION['user'];
+$userID = $userObj[0]->id;
 $searchResults = $_SESSION["search-results"];
 
 $json_output = json_encode($searchResults);
 
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
-WHERE user_id = 1
+WHERE user_id = $userID
 ORDER BY date_created ASC";
 $result = $conn->query($sql);
 
@@ -36,8 +38,6 @@ if ($result->num_rows > 0) {
     <div class='search-results-container'>
 
         <?php
-
-        echo "Session LoggedIn value: " . ($_SESSION['loggedIn'] ?? 'Not set');
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>

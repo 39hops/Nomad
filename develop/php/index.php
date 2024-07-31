@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+if (isset($_SESSION["user"])) {
+    $userObj = $_SESSION["user"];
+}
+
 include ("db_connection.php");
 
 $countriesArray = [];
@@ -36,12 +41,23 @@ if ($result->num_rows > 0) {
 
         <div class="container" id="search">
 
-            <div class="nav">
-                <span id="nomad">NOMAD</span>
-                <a href="../php/profile.php">PROFILE</a>
-                <a href="../php/login.php">LOGIN</a>
-                <a href="../pages/signup.html">SIGNUP</a>
-            </div>
+            <?php
+
+            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+                echo "<div class='nav'>
+                <span id='nomad'>NOMAD</span>
+                <p id='topName'></p>
+                <a href='./profile.php'>PROFILE</a>
+                <a href='./logout.php'>LOGOUT</a>
+                </div>";
+            } else {
+                echo "<div class='nav'>
+                <span id='nomad'>NOMAD</span>
+                <a href='../php/login.php'>LOGIN</a>
+                <a href='../pages/signup.html'>SIGNUP</a>
+                </div>";
+            }
+            ?>
 
             <h1 id="discover">discover.</h1>
 
@@ -84,6 +100,11 @@ if ($result->num_rows > 0) {
         var cityTitle = document.getElementById('city-title');
         var actTitle = document.getElementById('activity-title');
         var searchBtn = document.getElementById('search-btn');
+        var topName = document.getElementById('topName');
+
+        if (topName) {
+            topName.innerHTML = <?php echo json_encode($userObj[0]->u_username); ?>;
+        }
 
         for (i = 0; i < dropdown.length; i++) {
             dropdown[i].addEventListener('click', toggle);
