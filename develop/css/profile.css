@@ -7,7 +7,6 @@
     font-family: inter;
     src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +15,7 @@
 }
 
 body {
-    background-color: #003566;
+    background-color: #12262d;
 }
 
 .glass {
@@ -101,14 +100,11 @@ body {
 }
 
 .icon:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.4);
 }
 
-.itry-container {
-    /* border: solid violet 1px; */
-    color: white;
-}
+
 
 #createModal {
     /* border: solid white 1px; */
@@ -160,6 +156,9 @@ form input,
 form button {
     margin: 5px;
 }
+form label {
+    font-family: inter;
+}
 
 form input {
     border: none;
@@ -187,13 +186,13 @@ form button {
 
 div button:hover {
     transform: translateY(-2px);
-    background-color: #003566;
     color: white;
 }
 
 .itry-container {
     /* border: solid yellow 1px; */
-    margin-top: 50px;
+    color: white;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -225,8 +224,13 @@ div button:hover {
     cursor: pointer;
     transition: 0.2s;
 }
+.card p {
+    font-family: inter;
+    font-weight: bold;
+}
 
 .card:hover {
     background: rgba(255, 255, 255, 0.5);
+    
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
