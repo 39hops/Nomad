@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
         delItryBtn.addEventListener('click', deleteItry);
         topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
 
-        // console.log(itryActArray);
+        console.log(itryActArray);
 
         if (itryActArray && itryActArray.length > 0) {
             for (i = 0; i < itryActArray.length; i++) {
@@ -92,7 +92,6 @@ if ($result->num_rows > 0) {
                 var desc = document.createElement('p');
                 var iconWrapper = document.createElement('div');
                 var icon = document.createElement('img');
-
 
                 card.classList.add('card');
                 card.classList.add('glass');
@@ -123,6 +122,11 @@ if ($result->num_rows > 0) {
                 wrapper.append(card);
 
             }
+        } else {
+            var empty = document.createElement('p');
+            empty.innerHTML = 'No activities to show';
+            empty.setAttribute('id', 'empty');
+            wrapper.append(empty);
         }
 
         function deleteActivity(e) {

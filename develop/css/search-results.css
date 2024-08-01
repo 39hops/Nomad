@@ -196,6 +196,22 @@ body {
 
 form p {
   font-weight: bold;
+  text-align: center;
+}
+
+#redirect, #alternate {
+  font-weight: 400;
+  text-decoration: none;
+  color: #12262d;
+}
+
+#redirect {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#redirect:hover {
+  font-weight: bold;
 }
 
 form input {

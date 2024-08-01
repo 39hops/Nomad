@@ -87,7 +87,6 @@ if ($result->num_rows > 0) {
                 <div class="close">&times;</div>
                 <div class="form-wrapper">
                     <form id="select-itry">
-                        <p id="message">Select an itinerary:</p>
                     </form>
                     <p class="success">Successfully added to itinerary</p>
                 </div>
@@ -180,6 +179,12 @@ if ($result->num_rows > 0) {
         console.log(itinerariesArray);
 
         if (itinerariesArray && itinerariesArray.length > 0) {
+
+            var select = document.createElement('p');
+            select.setAttribute('id', 'message');
+            select.innerHTML = 'Select an itinerary: ';
+            form.append(select);
+
             for (i = 0; i < itinerariesArray.length; i++) {
                 var field = document.createElement('input');
                 var br = document.createElement('br');
@@ -205,19 +210,31 @@ if ($result->num_rows > 0) {
 
             form.append(addBtn);
 
+        } else if (itinerariesArray.length == 0) {
+            var select = document.createElement('p');
+            var redirect = document.createElement('p');
+
+            select.setAttribute('id', 'message');
+            redirect.setAttribute('id', 'alternate');
+
+            select.innerHTML = 'No itineraries to show';
+            redirect.innerHTML = '<a href="../php/profile.php" id="redirect">GO TO PROFILE</a> to create an itinerary'
+
+            form.append(select);
+            form.append(redirect);
         } else {
 
-            var proBtn = document.createElement('button');
-            proBtn.setAttribute('type', 'button');
+            var select = document.createElement('p');
+            var redirect = document.createElement('p');
 
-            message.innerHTML = 'No itineraries to show. Visit the profile page to create a new itinerary.';
-            proBtn.innerHTML = 'GO TO PROFILE';
+            select.setAttribute('id', 'message');
+            redirect.setAttribute('id', 'alternate');
 
-            proBtn.addEventListener('click', () => {
-                window.location.replace('./profile.php');
-            })
+            select.innerHTML = 'No itineraries to show';
+            redirect.innerHTML = '<a href="../php/login.php" id="redirect">LOGIN</a> to create an itinerary'
 
-            form.append(proBtn);
+            form.append(select);
+            form.append(redirect);
         }
     }
 

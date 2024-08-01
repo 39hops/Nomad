@@ -101,6 +101,15 @@ h1 {
     transform: translateY(-2px);
 }
 
+#empty {
+    color: white;
+    font-style: italic;
+    font-family: inter;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
 .card {
     /* border: solid black 1px; */
     height: 300px;

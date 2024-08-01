@@ -68,6 +68,12 @@ body {
     object-fit: cover;
 }
 
+#bio {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+}
+
 .user {
     /* border: solid blue 1px; */
     display: flex;

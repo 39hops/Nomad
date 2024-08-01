@@ -28,7 +28,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                     $_SESSION['user'] = $userObj;
                     $_SESSION['loggedIn'] = true;
                     
-                    header("Location: index.php");
+                    header("Location: ../php/index.php");
                     exit();
                 } 
             } else {
