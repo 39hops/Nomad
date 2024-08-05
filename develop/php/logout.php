@@ -1,8 +1,5 @@
 <?php 
-
 session_start();
 $_SESSION = array();
 session_destroy();
-header("Location: ./index.php#search");
-
-?>
+header("Location: ../pages/index.php#search");

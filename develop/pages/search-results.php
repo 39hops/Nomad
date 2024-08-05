@@ -1,5 +1,5 @@
 <?php
-include ("db_connection.php");
+include ("../php/db_connection.php");
 
 session_start();
 
@@ -63,15 +63,15 @@ if ($result->num_rows > 0) {
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
-            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
+            <a href='../pages/index.php'><span id='nomad'>NOMAD</span></a>
             <p id='topName'></p>
-            <a href='../php/profile.php'>PROFILE</a>
+            <a href='../pages/profile.php'>PROFILE</a>
             <a href='../php/logout.php'>LOGOUT</a>
             </div>";
         } else {
             echo "<div class='nav'>
-            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
-            <a href='../php/login.php'>LOGIN</a>
+            <a href='../pages/index.php'><span id='nomad'>NOMAD</span></a>
+            <a href='../pages/login.php'>LOGIN</a>
             <a href='../pages/signup.html'>SIGNUP</a>
             </div>";
         }
@@ -218,7 +218,7 @@ if ($result->num_rows > 0) {
             redirect.setAttribute('id', 'alternate');
 
             select.innerHTML = 'No itineraries to show';
-            redirect.innerHTML = '<a href="../php/profile.php" id="redirect">GO TO PROFILE</a> to create an itinerary'
+            redirect.innerHTML = '<a href="../pages/profile.php" id="redirect">GO TO PROFILE</a> to create an itinerary'
 
             form.append(select);
             form.append(redirect);
@@ -231,8 +231,7 @@ if ($result->num_rows > 0) {
             redirect.setAttribute('id', 'alternate');
 
             select.innerHTML = 'No itineraries to show';
-            redirect.innerHTML = '<a href="../php/login.php" id="redirect">LOGIN</a> to create an itinerary'
-
+            redirect.innerHTML = '<a href="../pages/login.php" id="redirect">LOGIN</a> to create an itinerary'
             form.append(select);
             form.append(redirect);
         }
@@ -256,16 +255,13 @@ if ($result->num_rows > 0) {
         activityID = addModal.dataset.activityId;
         itineraryID = addModal.dataset.itineraryId;
 
-        // console.log(activityID);
-        // console.log(itineraryID);
-
         if (!activityID || !itineraryID) {
             console.log('Please an activity to add to your itinerary');
         }
 
         $.ajax({
             type: "POST",
-            url: "./add-to-itinerary.php",
+            url: "../php/add-to-itinerary.php",
             data: {
                 activityID: activityID,
                 itineraryID: itineraryID

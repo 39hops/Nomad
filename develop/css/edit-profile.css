@@ -4,6 +4,7 @@
     font-family: alexana;
     src: url(../fonts/Alexana.ttf);
 }
+
 /* background-color: #12262d;
     background-color: #36827f; */
 @font-face {
@@ -21,6 +22,7 @@
 body {
     background-color: #12262d;
 }
+
 .glass {
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);
@@ -69,7 +71,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    
+
 }
 
 .avi {

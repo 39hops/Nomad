@@ -12,7 +12,6 @@ if (isset($_POST['activityID']) && isset($_POST['itineraryID'])) {
     if (!$conn_stmt->prepare($sql)) {
         die("SQL Error (prepare): " . $conn->error);
     }
-    ;
 
     $activityID = $_POST['activityID'];
     $itineraryID = $_POST['itineraryID'];

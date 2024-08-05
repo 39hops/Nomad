@@ -36,9 +36,9 @@ if ($result->num_rows > 0) {
 
     <div class="edit-container">
         <div class='nav'>
-            <a href='../php/index.php'><span id='nomad'>NOMAD</span></a>
+            <a href='../pages/index.php'><span id='nomad'>NOMAD</span></a>
             <p id='topName'></p>
-            <a href='../php/profile.php'>PROFILE</a>
+            <a href='../pages/profile.php'>PROFILE</a>
             <a href='../php/logout.php'>LOGOUT</a>
         </div>
 

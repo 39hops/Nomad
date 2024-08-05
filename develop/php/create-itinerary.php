@@ -25,7 +25,7 @@ if (!$conn_stmt->bind_param("si", $it_name, $user_id)) {
 }
 
  if ($conn_stmt->execute()){
-    header("Location: ./profile.php");
+    header("Location: ../pages/profile.php");
     exit();
  } else {
     die($conn->error . "");
