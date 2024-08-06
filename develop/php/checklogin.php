@@ -8,10 +8,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $uname =  $_POST['username'];
     $pass = $_POST['password']; 
     if (empty($uname)) {
-        header("Location: login.php?error=Please enter username or password. ");
+        header("Location: ../pages/login.php?error=Please enter username or password. ");
         exit();
     } else if (empty($pass)) {
-        header("Location: login.php?error=Please enter username or password. ");
+        header("Location: ../pages/login.php?error=Please enter username or password. ");
         exit();
     } else {
         try {
@@ -28,11 +28,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                     $_SESSION['user'] = $userObj;
                     $_SESSION['loggedIn'] = true;
                     
-                    header("Location: ../php/index.php");
+                    header("Location: ../pages/index.php");
                     exit();
                 } 
             } else {
-                header("Location: login.php?error=Incorrect username or password. ");
+                header("Location: ../pages/login.php?error=Incorrect username or password. ");
                 exit();
             }   
         } catch (PDOException $e) {

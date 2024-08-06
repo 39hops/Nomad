@@ -22,7 +22,7 @@ $passwordHash);
 
 
  if ($conn_stmt->execute()){
-    header("Location: ../php/login.php");
+    header("Location: ../pages/login.php");
  } else {
     die($conn->error . " ");
  }

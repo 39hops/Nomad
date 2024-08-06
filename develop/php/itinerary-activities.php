@@ -47,15 +47,15 @@ if ($result->num_rows > 0) {
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
-            <a href='./index.php'><span id='nomad'>NOMAD</span></a>
+            <a href='../pages/index.php'><span id='nomad'>NOMAD</span></a>
             <p id='topName'></p>
-            <a href='./profile.php'>PROFILE</a>
-            <a href='./logout.php'>LOGOUT</a>
+            <a href='../pages/profile.php'>PROFILE</a>
+            <a href='../php/logout.php'>LOGOUT</a>
             </div>";
         } else {
             echo "<div class='nav'>
             <span id='nomad'>NOMAD</span>
-            <a href='../php/login.php'>LOGIN</a>
+            <a href='../pages/login.php'>LOGIN</a>
             <a href='../pages/signup.html'>SIGNUP</a>
             </div>";
         }
@@ -138,7 +138,7 @@ if ($result->num_rows > 0) {
 
             $.ajax({
                 type: "POST",
-                url: "./delete-itinerary-activity.php",
+                url: "../php/delete-itinerary-activity.php",
                 data: {
                     itineraryID: itineraryID,
                     activityID: activityID
@@ -157,13 +157,13 @@ if ($result->num_rows > 0) {
 
             $.ajax({
                 type: "POST",
-                url: "./delete-itinerary.php",
+                url: "../php/delete-itinerary.php",
                 data: {
                     itineraryID: itineraryID,
                 },
                 success: function (data) {
 
-                    window.location.replace('./profile.php');
+                    window.location.replace('../pages/profile.php');
                 }
             });
         }

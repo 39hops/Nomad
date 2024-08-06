@@ -6,7 +6,7 @@ if (isset($_SESSION["user"])) {
     $userObj = $_SESSION["user"];
 }
 
-include ("db_connection.php");
+include ("../php/db_connection.php");
 
 $countriesArray = [];
 $sql = "SELECT id, cr_name FROM country";
@@ -48,13 +48,13 @@ if ($result->num_rows > 0) {
                 echo "<div class='nav'>
                 <span id='nomad'>NOMAD</span>
                 <p id='topName'></p>
-                <a href='./profile.php'>PROFILE</a>
-                <a href='./logout.php'>LOGOUT</a>
+                <a href='../pages/profile.php'>PROFILE</a>
+                <a href='../php/logout.php'>LOGOUT</a>
                 </div>";
             } else {
                 echo "<div class='nav'>
                 <span id='nomad'>NOMAD</span>
-                <a href='../php/login.php'>LOGIN</a>
+                <a href='../pages/login.php'>LOGIN</a>
                 <a href='../pages/signup.html'>SIGNUP</a>
                 </div>";
             }
@@ -103,7 +103,7 @@ if ($result->num_rows > 0) {
         var searchBtn = document.getElementById('search-btn');
         var topName = document.getElementById('topName');
         var username = <?php 
-        if ((isset($_SESSION['user']))) {
+        if (isset($_SESSION['user'])) {
             echo json_encode($userObj[0]->u_username); 
         } else {
             echo "0";
@@ -177,7 +177,7 @@ if ($result->num_rows > 0) {
 
             $.ajax({
                 type: "POST",
-                url: "./getCities.php",
+                url: "../php/get-cities.php",
                 data: { countryID: id },
                 success: function (data) {
 
@@ -203,54 +203,35 @@ if ($result->num_rows > 0) {
 
                 }
             });
-
         }
-
         function showActivities() {
-
             var options = document.getElementById('activity-optn');
             var nullAct = document.getElementById('nullAct');
             const activities = ['Architecture', 'Nature', 'Museum', 'Restaurant'];
-
             if (nullAct) {
-
                 nullAct.remove();
-
                 for (i = 0; i < activities.length; i++) {
-
                     var optnDiv = document.createElement('div');
                     optnDiv.innerHTML = activities[i];
                     optnDiv.classList.add('glass');
                     options.append(optnDiv);
                     optnDiv.addEventListener('click', selectActivity);
-
                 }
             }
-
         }
 
         function search() {
-
-            // console.log('searching . . .');
-
-            // console.log(cityTitle.dataset.qry);
-            // console.log((actTitle.value).toLowerCase());
-
             var cityName = cityTitle.value;
             var cityID = cityTitle.dataset.qry;
             var activity = (actTitle.value).toLowerCase();
-
             if (cityID && activity) {
-
-                var url = './search-results.php?cityName=' + cityName + '&cityID=' + cityID + '&activity=' + activity;
+                var url = '../pages/search-results.php?cityName=' + cityName + '&cityID=' + cityID + '&activity=' + activity;
                 window.location.replace(url);
-
             } else {
                 console.log('error: empty field');
             }
 
         }
-
     </script>
 
 </body>

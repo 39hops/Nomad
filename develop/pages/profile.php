@@ -5,7 +5,7 @@ session_start();
 $userObj = $_SESSION["user"];
 $userID = $userObj[0]->id;
 
-include ("db_connection.php");
+include ("../php/db_connection.php");
 
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
@@ -35,9 +35,9 @@ if ($result->num_rows > 0) {
 <body>
     <div class="profile-container">
         <div class="nav">
-            <a href="../php/index.php"><span id="nomad">NOMAD</span></a>
+            <a href="../pages/index.php"><span id="nomad">NOMAD</span></a>
             <p id="topName"></p>
-            <a href="./logout.php">LOGOUT</a>
+            <a href="../php/logout.php">LOGOUT</a>
         </div>
 
         <div class="user">
@@ -133,26 +133,12 @@ if ($result->num_rows > 0) {
         }
 
         onLoad();
-
-
         function getItryAct(e) {
-
-            // console.log(e);
-            // console.log(e.target);
-            // console.log(((e.target).firstChild).innerText);
-            // console.log((e.target).dataset.itineraryId);
-
             var itineraryID = (e.target).dataset.itineraryId;
             var itineraryName = (e.target).firstChild.innerText;
-
-            var url = './itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
-
+            var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
             window.location.replace(url);
-
         }
-
-
-
     </script>
 </body>
 

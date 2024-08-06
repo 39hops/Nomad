@@ -30,11 +30,8 @@ try {
     } else {
         die("Error updating user information: " . $stmt->error);
     }
-
-    $stmt->close();
-    $conn->close();
 } catch (Exception $e) {
     header("Location: ../pages/edit-profile.php?status=error");
     exit();
 }
-?>
+
