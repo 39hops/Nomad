@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['activityID']) && isset($_POST['itineraryID'])) {
 
-    include ("db_connection.php");
+    include("db_connection.php");
 
     $activitiesArray = [];
     $sql = "INSERT INTO itinerary_activity (itinerary_id, activity_id)
@@ -24,9 +24,6 @@ if (isset($_POST['activityID']) && isset($_POST['itineraryID'])) {
     } else {
         die($conn->error . "");
     }
-
 } else {
     echo "No data received";
 }
-
-?>

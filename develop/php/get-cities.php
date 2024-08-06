@@ -20,4 +20,3 @@ if (isset($_POST['countryID'])) {
 } else {
     echo "No cityID received";
 }
-?>

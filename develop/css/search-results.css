@@ -72,19 +72,23 @@ body {
   margin-right: auto;
   color: white;
 }
+
 @media screen and (max-width: 1000px) {
   .viewing {
     font-size: 60px;
   }
 }
-@media screen and (max-width: 500px){
+
+@media screen and (max-width: 500px) {
   .viewing {
     font-size: 40px;
   }
+
   .card {
     margin: auto;
   }
 }
+
 .viewing span {
   color: #36827f;
 }

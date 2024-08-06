@@ -103,7 +103,7 @@ h2 {
 }
 
 form input {
-    text-align: center; 
+    text-align: center;
     background-color: transparent;
     border: none;
     height: 50px;
@@ -111,14 +111,15 @@ form input {
     font-family: inter;
     font-size: 20px;
     cursor: pointer;
-    
-    
+
+
 }
+
 .error {
     color: red;
     font-size: 20px;
     text-align: center;
-    
+
 
 }
 

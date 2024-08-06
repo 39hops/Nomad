@@ -18,8 +18,6 @@ if ($result->num_rows > 0) {
         $_SESSION['user'] = $userObj;
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +97,6 @@ if ($result->num_rows > 0) {
     } else {
         avi.src = '../images/default-anouar-olh.jpg';
     }
-
     console.log(aviUrl);
     </script>
 

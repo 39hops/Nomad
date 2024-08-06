@@ -31,4 +31,3 @@ if (!$conn_stmt->bind_param("si", $it_name, $user_id)) {
     die($conn->error . "");
  }
 
-?>

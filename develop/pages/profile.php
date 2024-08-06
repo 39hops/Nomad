@@ -18,9 +18,7 @@ if ($result->num_rows > 0) {
         $itinerariesArray[] = (object) $row;
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,21 +37,17 @@ if ($result->num_rows > 0) {
             <p id="topName"></p>
             <a href="../php/logout.php">LOGOUT</a>
         </div>
-
         <div class="user">
             <img id="avi" src="">
             <h1 id="username"></h1>
             <h2 id="bio"></h2>
         </div>
-
         <div class="functions">
             <a href="../pages/edit-profile.php"><img class="icon" id="edit" src="../images/edit.png"></a>
             <img class="icon" id="create" src="../images/create.png">
         </div>
-
         <div class="itry-container"></div>
     </div>
-
     <div class="glass" id="createModal">
         <div class="close">&times;</div>
         <div class="form-wrapper">
@@ -64,81 +58,80 @@ if ($result->num_rows > 0) {
             </form>
         </div>
     </div>
-
     <script>
-        var edit = document.getElementById('edit');
-        var create = document.getElementById('create');
-        var createModal = document.getElementById('createModal');
-        var closeCreate = document.querySelector('.close');
-        var itinerariesArray = <?php echo json_encode($itinerariesArray) ?>;
-        var itryContainer = document.querySelector('.itry-container');
-        var usernameEl = document.getElementById('username');
-        var bioEl = document.getElementById('bio');
-        var topName = document.getElementById('topName');
-        var avi = document.getElementById('avi');
+    var edit = document.getElementById('edit');
+    var create = document.getElementById('create');
+    var createModal = document.getElementById('createModal');
+    var closeCreate = document.querySelector('.close');
+    var itinerariesArray = <?php echo json_encode($itinerariesArray) ?>;
+    var itryContainer = document.querySelector('.itry-container');
+    var usernameEl = document.getElementById('username');
+    var bioEl = document.getElementById('bio');
+    var topName = document.getElementById('topName');
+    var avi = document.getElementById('avi');
+    edit.addEventListener('click', editProfile);
+    create.addEventListener('click', openModal);
+    closeCreate.addEventListener('click', closeModal);
 
-        edit.addEventListener('click', editProfile);
-        create.addEventListener('click', openModal);
-        closeCreate.addEventListener('click', closeModal);
+    function editProfile() {
+        console.log('this is the edit function');
+    }
 
-        function editProfile() {
-            console.log('this is the edit function');
+    function openModal() {
+        createModal.style.display = "block";
+    }
+
+    function closeModal() {
+        createModal.style.display = "none";
+    }
+
+    function onLoad() {
+
+        usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+        topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+        var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
+        var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
+
+        if (bioVal) {
+            bioEl.innerText = bioVal;
         }
 
-        function openModal() {
-            createModal.style.display = "block";
+        if (aviUrl) {
+            avi.src = aviUrl;
+        } else {
+            avi.src = '../images/default-anouar-olh.jpg';
         }
 
-        function closeModal() {
-            createModal.style.display = "none";
-        }
+        console.log(itinerariesArray);
 
-        function onLoad() {
-
-            usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
-            topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
-            var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
-            var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
-
-            if (bioVal) {
-                bioEl.innerText = bioVal;
+        if (itinerariesArray && itinerariesArray.length > 0) {
+            for (i = 0; i < itinerariesArray.length; i++) {
+                var card = document.createElement('div');
+                card.classList.add('card');
+                card.classList.add('glass');
+                card.dataset.itineraryId = itinerariesArray[i].id;
+                card.addEventListener('click', getItryAct);
+                var itName = document.createElement('p');
+                itName.innerText = itinerariesArray[i].it_name;
+                card.append(itName);
+                itryContainer.append(card);
             }
-
-            if (aviUrl) {
-                avi.src = aviUrl;
-            } else {
-                avi.src = '../images/default-anouar-olh.jpg';
-            }
-
-            console.log(itinerariesArray);
-
-            if (itinerariesArray && itinerariesArray.length > 0) {
-                for (i = 0; i < itinerariesArray.length; i++) {
-                    var card = document.createElement('div');
-                    card.classList.add('card');
-                    card.classList.add('glass');
-                    card.dataset.itineraryId = itinerariesArray[i].id;
-                    card.addEventListener('click', getItryAct);
-                    var itName = document.createElement('p');
-                    itName.innerText = itinerariesArray[i].it_name;
-                    card.append(itName);
-                    itryContainer.append(card);
-                }
-            } else {
-                var p = document.createElement('p');
-                p.innerText = 'There are no itineraries to show.';
-                p.classList.add('null');
-                itryContainer.append(p);
-            }
+        } else {
+            var p = document.createElement('p');
+            p.innerText = 'There are no itineraries to show.';
+            p.classList.add('null');
+            itryContainer.append(p);
         }
+    }
 
-        onLoad();
-        function getItryAct(e) {
-            var itineraryID = (e.target).dataset.itineraryId;
-            var itineraryName = (e.target).firstChild.innerText;
-            var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
-            window.location.replace(url);
-        }
+    onLoad();
+
+    function getItryAct(e) {
+        var itineraryID = (e.target).dataset.itineraryId;
+        var itineraryName = (e.target).firstChild.innerText;
+        var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
+        window.location.replace(url);
+    }
     </script>
 </body>
 

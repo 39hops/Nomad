@@ -23,4 +23,3 @@ if (isset($_POST['itineraryID']) && isset($_POST['activityID'])) {
 } else {
     echo "No data received";
 }
-?>

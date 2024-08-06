@@ -7,6 +7,7 @@
     font-family: inter;
     src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -162,6 +163,7 @@ form input,
 form button {
     margin: 5px;
 }
+
 form label {
     font-family: inter;
 }
@@ -230,6 +232,7 @@ div button:hover {
     cursor: pointer;
     transition: 0.2s;
 }
+
 .card p {
     font-family: inter;
     font-weight: bold;
@@ -237,6 +240,6 @@ div button:hover {
 
 .card:hover {
     background: rgba(255, 255, 255, 0.5);
-    
+
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }

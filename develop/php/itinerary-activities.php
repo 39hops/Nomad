@@ -69,105 +69,104 @@ if ($result->num_rows > 0) {
     </div>
 
     <script>
-        var itryActArray = <?php echo json_encode($itryActArray) ?>;
-        var wrapper = document.querySelector('.activity-wrapper');
-        var span = document.getElementById('itry-name');
-        span.innerHTML = <?php echo json_encode($_GET['itineraryName']) ?>;
-        var topName = document.getElementById('topName');
-        var delItryBtn = document.getElementById('delete-itry');
+    var itryActArray = <?php echo json_encode($itryActArray) ?>;
+    var wrapper = document.querySelector('.activity-wrapper');
+    var span = document.getElementById('itry-name');
+    span.innerHTML = <?php echo json_encode($_GET['itineraryName']) ?>;
+    var topName = document.getElementById('topName');
+    var delItryBtn = document.getElementById('delete-itry');
 
-        delItryBtn.addEventListener('click', deleteItry);
-        topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+    delItryBtn.addEventListener('click', deleteItry);
+    topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
 
-        console.log(itryActArray);
+    console.log(itryActArray);
 
-        if (itryActArray && itryActArray.length > 0) {
-            for (i = 0; i < itryActArray.length; i++) {
-                var card = document.createElement('div');
-                var imgWrapper = document.createElement('div');
-                var img = document.createElement('img');
-                var content = document.createElement('div');
-                var title = document.createElement('p');
-                var address = document.createElement('p');
-                var desc = document.createElement('p');
-                var iconWrapper = document.createElement('div');
-                var icon = document.createElement('img');
+    if (itryActArray && itryActArray.length > 0) {
+        for (i = 0; i < itryActArray.length; i++) {
+            var card = document.createElement('div');
+            var imgWrapper = document.createElement('div');
+            var img = document.createElement('img');
+            var content = document.createElement('div');
+            var title = document.createElement('p');
+            var address = document.createElement('p');
+            var desc = document.createElement('p');
+            var iconWrapper = document.createElement('div');
+            var icon = document.createElement('img');
 
-                card.classList.add('card');
-                card.classList.add('glass');
-                card.dataset.itineraryId = itryActArray[i].itinerary_id;
-                card.dataset.activityId = itryActArray[i].activity_id;
-                imgWrapper.classList.add('imgWrapper');
-                title.classList.add('title');
-                content.classList.add('content');
-                desc.classList.add('desc');
-                icon.classList.add('icon');
-                icon.classList.add('glass');
+            card.classList.add('card');
+            card.classList.add('glass');
+            card.dataset.itineraryId = itryActArray[i].itinerary_id;
+            card.dataset.activityId = itryActArray[i].activity_id;
+            imgWrapper.classList.add('imgWrapper');
+            title.classList.add('title');
+            content.classList.add('content');
+            desc.classList.add('desc');
+            icon.classList.add('icon');
+            icon.classList.add('glass');
 
-                icon.addEventListener('click', deleteActivity);
+            icon.addEventListener('click', deleteActivity);
 
-                img.src = itryActArray[i].image;
-                title.innerText = itryActArray[i].a_name;
-                address.innerText = itryActArray[i].address;
-                desc.innerText = itryActArray[i].a_description;
-                icon.src = '../images/trash.png';
+            img.src = itryActArray[i].image;
+            title.innerText = itryActArray[i].a_name;
+            address.innerText = itryActArray[i].address;
+            desc.innerText = itryActArray[i].a_description;
+            icon.src = '../images/trash.png';
 
-                content.append(title);
-                content.append(address);
-                content.append(desc);
-                imgWrapper.append(img);
-                card.append(imgWrapper);
-                card.append(content);
-                card.append(icon);
-                wrapper.append(card);
+            content.append(title);
+            content.append(address);
+            content.append(desc);
+            imgWrapper.append(img);
+            card.append(imgWrapper);
+            card.append(content);
+            card.append(icon);
+            wrapper.append(card);
 
+        }
+    } else {
+        var empty = document.createElement('p');
+        empty.innerHTML = 'No activities to show';
+        empty.setAttribute('id', 'empty');
+        wrapper.append(empty);
+    }
+
+    function deleteActivity(e) {
+        console.log((e.target).parentNode.dataset.itineraryId);
+        console.log((e.target).parentNode.dataset.activityId);
+
+        var itineraryID = (e.target).parentNode.dataset.itineraryId;
+        var activityID = (e.target).parentNode.dataset.activityId;
+
+        $.ajax({
+            type: "POST",
+            url: "../php/delete-itinerary-activity.php",
+            data: {
+                itineraryID: itineraryID,
+                activityID: activityID
+            },
+            success: function(data) {
+
+                window.location.reload();
             }
-        } else {
-            var empty = document.createElement('p');
-            empty.innerHTML = 'No activities to show';
-            empty.setAttribute('id', 'empty');
-            wrapper.append(empty);
-        }
+        });
+    }
 
-        function deleteActivity(e) {
-            console.log((e.target).parentNode.dataset.itineraryId);
-            console.log((e.target).parentNode.dataset.activityId);
+    function deleteItry() {
 
-            var itineraryID = (e.target).parentNode.dataset.itineraryId;
-            var activityID = (e.target).parentNode.dataset.activityId;
+        var itineraryID = <?php echo json_encode($_GET['itineraryID']) ?>;
+        console.log(itineraryID);
 
-            $.ajax({
-                type: "POST",
-                url: "../php/delete-itinerary-activity.php",
-                data: {
-                    itineraryID: itineraryID,
-                    activityID: activityID
-                },
-                success: function (data) {
+        $.ajax({
+            type: "POST",
+            url: "../php/delete-itinerary.php",
+            data: {
+                itineraryID: itineraryID,
+            },
+            success: function(data) {
 
-                    window.location.reload();
-                }
-            });
-        }
-
-        function deleteItry() {
-
-            var itineraryID = <?php echo json_encode($_GET['itineraryID']) ?>;
-            console.log(itineraryID);
-
-            $.ajax({
-                type: "POST",
-                url: "../php/delete-itinerary.php",
-                data: {
-                    itineraryID: itineraryID,
-                },
-                success: function (data) {
-
-                    window.location.replace('../pages/profile.php');
-                }
-            });
-        }
-
+                window.location.replace('../pages/profile.php');
+            }
+        });
+    }
     </script>
 </body>
 

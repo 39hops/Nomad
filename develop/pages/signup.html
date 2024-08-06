@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/signup.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/signup.css" />
     <script defer src="../js/signup.js"></script>
     <title>NOMAD | SignUp</title>
 </head>
+
 <body>
     <div class="nav">
-        <div><span><a href="../pages/index.php">NOMAD</a></span></div>
+        <div>
+            <span><a href="../pages/index.php">NOMAD</a></span>
+        </div>
         <div><a href="../pages/login.php">LOGIN</a></div>
     </div>
-   
+
     <div class="form-container glass">
         <form id="form" name="form" action="../php/signup.php" method="post">
             <h2>sign up</h2>
             <div class="signupItems">
-                <input class="glass" placeholder="First Name" type="text" name="fname" id="fname">
+                <input class="glass" placeholder="First Name" type="text" name="fname" id="fname" />
                 <div class="error"></div>
             </div>
             <div class="signupItems">
-                <input class="glass" placeholder="Last Name" type="text" name="lname" id="lname">
+                <input class="glass" placeholder="Last Name" type="text" name="lname" id="lname" />
                 <div class="error"></div>
             </div>
             <div class="signupItems">
-                <input class="glass" placeholder="Username" type="text" name="username" id="username">
+                <input class="glass" placeholder="Username" type="text" name="username" id="username" />
                 <div class="error"></div>
             </div>
             <div class="signupItems">
-                <input class="glass" placeholder="Email" type="text" name="email" id="email">
+                <input class="glass" placeholder="Email" type="text" name="email" id="email" />
                 <div class="error"></div>
             </div>
             <div class="signupItems">
-                <input class="glass" placeholder="Password" type="password" name="password" id="password">
+                <input class="glass" placeholder="Password" type="password" name="password" id="password" />
                 <div class="error"></div>
-            </div>  
+            </div>
             <div class="signupItems">
-                <input class="glass" placeholder="Re-type Password" type="password" name="passwordretype" id="passwordretype">
+                <input class="glass" placeholder="Re-type Password" type="password" name="passwordretype"
+                    id="passwordretype" />
                 <div class="error"></div>
-            </div>  
+            </div>
             <div class="signupItems">
                 <button class="glass" id="signupButton" type="submit">Sign Up</button>
             </div>
@@ -48,6 +53,6 @@
             <p>Already a Nomad? <a href="../pages/login.php">LOG IN</a></p>
         </div>
     </div>
-    
 </body>
+
 </html>

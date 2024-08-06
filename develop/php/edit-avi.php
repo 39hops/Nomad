@@ -34,4 +34,3 @@ try {
     header("Location: ../pages/edit-profile.php?status=error");
     exit();
 }
-

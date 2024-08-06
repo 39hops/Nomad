@@ -21,4 +21,3 @@ if (isset($_POST['itineraryID'])) {
 } else {
     echo "No data received";
 }
-?>

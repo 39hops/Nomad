@@ -1,5 +1,5 @@
 <?php
-include ("../php/db_connection.php");
+include("../php/db_connection.php");
 
 session_start();
 
@@ -107,11 +107,11 @@ if ($result->num_rows > 0) {
     const city = document.getElementById('city');
     const cityName = <?php echo json_encode($_GET['cityName']) ?>;
     var itinerariesArray = <?php
-    if ((isset($_SESSION['user']))) {
-        echo json_encode($itinerariesArray);
-    } else {
-        echo "0";
-    } ?>;
+                            if ((isset($_SESSION['user']))) {
+                                echo json_encode($itinerariesArray);
+                            } else {
+                                echo "0";
+                            } ?>;
     var modalBG = document.querySelector('.modal-bg');
     var addModal = document.getElementById('addModal');
     var close = document.querySelector('.close');
@@ -120,12 +120,12 @@ if ($result->num_rows > 0) {
     var message = document.querySelector('.success');
     var topName = document.getElementById('topName');
     var username = <?php
-    if ((isset($_SESSION['user']))) {
-        echo json_encode($userObj[0]->u_username);
-    } else {
-        echo "0";
-    }
-    ?>;
+                    if ((isset($_SESSION['user']))) {
+                        echo json_encode($userObj[0]->u_username);
+                    } else {
+                        echo "0";
+                    }
+                    ?>;
 
     if (topName !== null) {
         topName.innerHTML = username;
@@ -266,11 +266,11 @@ if ($result->num_rows > 0) {
                 activityID: activityID,
                 itineraryID: itineraryID
             },
-            success: function (data) {
+            success: function(data) {
 
                 message.style.display = "block";
 
-                setTimeout(function () {
+                setTimeout(function() {
                     location.reload();
                 }, 3000);
 
@@ -281,6 +281,4 @@ if ($result->num_rows > 0) {
 
     loadSearch();
     loadModal();
-
-
 </script>

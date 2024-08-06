@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
         $countriesArray[$row["id"]] = $row["cr_name"];
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -41,9 +40,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="container" id="search">
-
             <?php
-
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
                 <span id='nomad'>NOMAD</span>
@@ -59,7 +56,6 @@ if ($result->num_rows > 0) {
                 </div>";
             }
             ?>
-
             <h1 id="discover">discover.</h1>
 
             <div class="search-bar glass">
@@ -95,14 +91,13 @@ if ($result->num_rows > 0) {
     </div>
 
     <script>
-
-        var dropdown = document.querySelectorAll('.dropdown');
-        var countryTitle = document.getElementById('country-title');
-        var cityTitle = document.getElementById('city-title');
-        var actTitle = document.getElementById('activity-title');
-        var searchBtn = document.getElementById('search-btn');
-        var topName = document.getElementById('topName');
-        var username = <?php 
+    var dropdown = document.querySelectorAll('.dropdown');
+    var countryTitle = document.getElementById('country-title');
+    var cityTitle = document.getElementById('city-title');
+    var actTitle = document.getElementById('activity-title');
+    var searchBtn = document.getElementById('search-btn');
+    var topName = document.getElementById('topName');
+    var username = <?php 
         if (isset($_SESSION['user'])) {
             echo json_encode($userObj[0]->u_username); 
         } else {
@@ -110,128 +105,117 @@ if ($result->num_rows > 0) {
         }
         
         ?>;
+    if (topName !== null) {
+        topName.innerHTML = username;
+    }
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener('click', toggle);
+    }
+    searchBtn.addEventListener('click', search);
 
-        if (topName !== null) {
-            topName.innerHTML = username;
-        }
-
+    function toggle() {
         for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener('click', toggle);
-        }
-
-        searchBtn.addEventListener('click', search);
-
-        function toggle() {
-
-            for (i = 0; i < dropdown.length; i++) {
-                if (dropdown[i] !== this) {
-                    if ((dropdown[i].classList.value).includes('active')) {
-                        dropdown[i].classList.toggle('active');
-                    }
+            if (dropdown[i] !== this) {
+                if ((dropdown[i].classList.value).includes('active')) {
+                    dropdown[i].classList.toggle('active');
                 }
             }
-
-            this.classList.toggle('active');
         }
+        this.classList.toggle('active');
+    }
 
-        function selectCountry() {
-            cityTitle.value = '';
-            actTitle.value = '';
-            countryTitle.value = this.innerHTML;
-            countryTitle.dataset.qry = this.dataset.qry;
-            getCities(this.dataset.qry);
+    function selectCountry() {
+        cityTitle.value = '';
+        actTitle.value = '';
+        countryTitle.value = this.innerHTML;
+        countryTitle.dataset.qry = this.dataset.qry;
+        getCities(this.dataset.qry);
+    }
+
+    function selectCity() {
+        actTitle.value = '';
+        cityTitle.value = this.innerHTML;
+        cityTitle.dataset.qry = this.dataset.qry;
+        showActivities();
+    }
+
+    function selectActivity() {
+        actTitle.value = this.innerHTML;
+        actTitle.dataset.qry = this.dataset.qry;
+    }
+
+    function showCountries() {
+        var countries = <?php echo json_encode($countriesArray); ?>;
+        var keys = Object.keys(countries);
+        var options = document.getElementById('country-optn');
+        for (i = 0; i < keys.length; i++) {
+            var optnDiv = document.createElement('div');
+            optnDiv.innerHTML = countries[keys[i]];
+            optnDiv.dataset.qry = keys[i];
+            optnDiv.classList.add('glass');
+            options.append(optnDiv);
+            optnDiv.addEventListener('click', selectCountry);
         }
+    }
+    showCountries();
 
-        function selectCity() {
-            actTitle.value = '';
-            cityTitle.value = this.innerHTML;
-            cityTitle.dataset.qry = this.dataset.qry;
-            showActivities();
-        }
+    function getCities(id) {
+        $.ajax({
+            type: "POST",
+            url: "../php/get-cities.php",
+            data: {
+                countryID: id
+            },
+            success: function(data) {
+                var cities = JSON.parse(data);
+                var keys = Object.keys(cities);
+                var options = document.getElementById('city-optn');
+                prevQry = document.getElementsByClassName('city-item');
+                var staticArr = Array.from(prevQry);
+                for (i = 0; i < staticArr.length; i++) {
+                    staticArr[i].remove();
+                }
+                for (i = 0; i < keys.length; i++) {
+                    var optnDiv = document.createElement('div');
+                    optnDiv.innerHTML = cities[keys[i]];
+                    optnDiv.dataset.qry = keys[i];
+                    optnDiv.classList.add('glass');
+                    optnDiv.classList.add('city-item');
+                    options.append(optnDiv);
+                    optnDiv.addEventListener('click', selectCity);
+                }
+            }
+        });
+    }
 
-        function selectActivity() {
-            actTitle.value = this.innerHTML;
-            actTitle.dataset.qry = this.dataset.qry;
-        }
-
-        function showCountries() {
-
-            var countries = <?php echo json_encode($countriesArray); ?>;
-            var keys = Object.keys(countries);
-            var options = document.getElementById('country-optn');
-
-            for (i = 0; i < keys.length; i++) {
-
+    function showActivities() {
+        var options = document.getElementById('activity-optn');
+        var nullAct = document.getElementById('nullAct');
+        const activities = ['Architecture', 'Nature', 'Museum', 'Restaurant'];
+        if (nullAct) {
+            nullAct.remove();
+            for (i = 0; i < activities.length; i++) {
                 var optnDiv = document.createElement('div');
-                optnDiv.innerHTML = countries[keys[i]];
-                optnDiv.dataset.qry = keys[i];
+                optnDiv.innerHTML = activities[i];
                 optnDiv.classList.add('glass');
                 options.append(optnDiv);
-                optnDiv.addEventListener('click', selectCountry);
+                optnDiv.addEventListener('click', selectActivity);
             }
         }
+    }
 
-        showCountries();
-
-        function getCities(id) {
-
-            $.ajax({
-                type: "POST",
-                url: "../php/get-cities.php",
-                data: { countryID: id },
-                success: function (data) {
-
-                    var cities = JSON.parse(data);
-                    var keys = Object.keys(cities);
-                    var options = document.getElementById('city-optn');
-                    prevQry = document.getElementsByClassName('city-item');
-                    var staticArr = Array.from(prevQry);
-
-                    for (i = 0; i < staticArr.length; i++) {
-                        staticArr[i].remove();
-                    }
-
-                    for (i = 0; i < keys.length; i++) {
-                        var optnDiv = document.createElement('div');
-                        optnDiv.innerHTML = cities[keys[i]];
-                        optnDiv.dataset.qry = keys[i];
-                        optnDiv.classList.add('glass');
-                        optnDiv.classList.add('city-item');
-                        options.append(optnDiv);
-                        optnDiv.addEventListener('click', selectCity);
-                    }
-
-                }
-            });
+    function search() {
+        var cityName = cityTitle.value;
+        var cityID = cityTitle.dataset.qry;
+        var activity = (actTitle.value).toLowerCase();
+        if (cityID && activity) {
+            var url = '../pages/search-results.php?cityName=' + cityName + '&cityID=' + cityID + '&activity=' +
+                activity;
+            window.location.replace(url);
+        } else {
+            console.log('error: empty field');
         }
-        function showActivities() {
-            var options = document.getElementById('activity-optn');
-            var nullAct = document.getElementById('nullAct');
-            const activities = ['Architecture', 'Nature', 'Museum', 'Restaurant'];
-            if (nullAct) {
-                nullAct.remove();
-                for (i = 0; i < activities.length; i++) {
-                    var optnDiv = document.createElement('div');
-                    optnDiv.innerHTML = activities[i];
-                    optnDiv.classList.add('glass');
-                    options.append(optnDiv);
-                    optnDiv.addEventListener('click', selectActivity);
-                }
-            }
-        }
-
-        function search() {
-            var cityName = cityTitle.value;
-            var cityID = cityTitle.dataset.qry;
-            var activity = (actTitle.value).toLowerCase();
-            if (cityID && activity) {
-                var url = '../pages/search-results.php?cityName=' + cityName + '&cityID=' + cityID + '&activity=' + activity;
-                window.location.replace(url);
-            } else {
-                console.log('error: empty field');
-            }
-
-        }
+    }
     </script>
 
 </body>

@@ -10,9 +10,7 @@
 </head>
 
 <body>
-
     <div class="login-window">
-
         <div class="nav">
             <span><a href="../pages/index.php">NOMAD</a></span>
             <div><a href="../pages/signup.html">SIGN UP</a></div>
@@ -28,7 +26,7 @@
                 <div class="loginItems">
                     <input class="glass" placeholder="Username" type="text" name="username" id="username">
                 </div>
-                
+
                 <div class="loginItems">
                     <input class="glass" placeholder="Password" type="password" name="password" id="password">
                     <?php if (isset($_GET['error'])) { ?>
@@ -41,18 +39,12 @@
                 <div class="loginItems">
                     <button class="glass" id="loginButton" type="submit">LOGIN</button>
                 </div>
-
             </form>
         </div>
-
         <div class="signup">
             <p>New to Nomad? <a href="../pages/signup.html">SIGN UP</a></p>
         </div>
-
     </div>
-
-
-
 </body>
 
 </html>
