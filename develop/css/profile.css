@@ -51,7 +51,8 @@ body {
     cursor: pointer;
 }
 
-.nav a, #topName {
+.nav a,
+#topName {
     font-family: inter;
     text-decoration: none;
     text-transform: uppercase;
@@ -230,6 +231,7 @@ div button:hover {
     border-radius: 50px;
     height: 200px;
     cursor: pointer;
+    text-align: center;
     transition: 0.2s;
 }
 
@@ -242,4 +244,33 @@ div button:hover {
     background: rgba(255, 255, 255, 0.5);
 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .profile-container {
+        height: fit-content;
+    }
+
+    .itry-container {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .itry-container {
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    .card {
+        width: 70%;
+        min-height: 200px !important;
+        font-size: 20px;
+    }
 }
