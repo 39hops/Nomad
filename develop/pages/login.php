@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
-    <script src="../js/login.js"></script>
+    <link rel="stylesheet" href="../css/login.css?v=<?php echo time(); ?>">
     <title>NOMAD | Login</title>
 </head>
 
@@ -13,7 +12,7 @@
     <div class="login-window">
         <div class="nav">
             <span><a href="../pages/index.php">NOMAD</a></span>
-            <div><a href="../pages/signup.html?v=<?php echo time(); ?>">SIGN UP</a></div>
+            <div><a href="../pages/signup.html">SIGN UP</a></div>
         </div>
 
         <div class="form-container glass">
