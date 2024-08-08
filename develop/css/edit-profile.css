@@ -132,3 +132,22 @@ i {
     color: black;
     font-size: 20px;
 }
+
+@media only screen and (max-width: 1024px) {
+    .edit-container {
+        height: fit-content;
+    }
+
+    .content-wrapper {
+        height: fit-content;
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .nav a, #topName {
+        font-size: 15px;
+    }
+}
