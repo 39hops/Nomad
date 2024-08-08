@@ -116,15 +116,17 @@ form input {
 }
 
 .error {
-    color: red;
+    color: tomato;
     font-size: 20px;
     text-align: center;
+    font-family: inter;
+    font-weight: bold;
 
 
 }
 
 input.error {
-    border: solid red 2px;
+    border: solid tomato 2px;
 }
 
 form input::placeholder {
