@@ -171,14 +171,61 @@ form input::placeholder {
     cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
-    /* .login_window {
-        border: 2px solid blue;
+@media only screen and (max-width: 750px) {
+
+    h2{
+        font-size: 35px;
     }
 
-    form {
-        margin: 90px;
-    } */
+     .form-container{
+        width: 90%;
+    }
+
+    form input{
+        font-size: 15px;
+    }
+
+    .nav div a, .nav span a{
+        font-size: 20px;
+    }
+
+    #loginButton{
+        font-size: 15px;
+    }
+
+    body{
+        background-size: 300%;
+        background-position: center center;
+    } 
+}
+
+    @media screen and (max-width: 600px) {
+
+        .form-container{
+            width: 90%;
+        }
+    
+        h2{
+            font-size: 25px;
+        }
+    
+        form input{
+            font-size: 15px;
+        }
+    
+        .nav div a, .nav span a{
+            font-size: 15px;
+        }
+    
+        #loginButton{
+            font-size: 15px;
+        }
+    
+        body{
+            background-size: 500%;
+            background-position: center center;
+            
+        }
 
 
 }
