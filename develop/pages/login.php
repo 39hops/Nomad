@@ -13,7 +13,7 @@
     <div class="login-window">
         <div class="nav">
             <span><a href="../pages/index.php">NOMAD</a></span>
-            <div><a href="../pages/signup.html">SIGN UP</a></div>
+            <div><a href="../pages/signup.html?v=<?php echo time(); ?>">SIGN UP</a></div>
         </div>
 
         <div class="form-container glass">
