@@ -2,7 +2,7 @@
     Professor: Alemeseged Legesse
     File Name: create-itinerary.php
     Date: 8/11/2024
-    Description: PHP file allow the user to create an itinerary.
+    Description: PHP file to check to see if a user's login information is correct. 
 -->
 <?php
 /**
