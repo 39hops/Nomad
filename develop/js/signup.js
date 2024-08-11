@@ -1,3 +1,9 @@
+// Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+// Professor: Alemeseged Legesse
+// File Name: signup.js
+// Date: 8/11/2024
+// Description: JS page for user form validation when signing up as a new user.
+
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
 const lname = document.getElementById("lname");
