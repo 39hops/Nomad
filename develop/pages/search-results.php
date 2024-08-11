@@ -1,6 +1,6 @@
 <!--Names: Artin Azizi (041131883), Mohamed Dualeh (041137299), Raisa Rahman (041129634)
     Professor: Alemeseged Legesse
-    File Name: search-results.php
+    File Name: edit-profile.php
     Date: 8/11/2024
     Description: PHP file to query the correct activities from the their specified search. Will return all activities in a certain city/country in a card format.
 -->

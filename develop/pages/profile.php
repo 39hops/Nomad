@@ -1,6 +1,6 @@
 <!--Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
     Professor: Alemeseged Legesse
-    File Name: profile.php
+    File Name: index.php
     Date: 8/11/2024
     Description: PHP file to provide the user with a page that displays their profile picture, bio, name, and itineraries.
 -->
