@@ -3,7 +3,7 @@
 # Professor: Alemeseged Legesse
 # File Name: search-results.php
 # Date: 8/11/2024
-# Description: PHP file to check to provide a user with their search results given their city and country of choice.
+# Description: PHP file to provide a user with their search results given their city and country of choice.
 include "../php/db_connection.php";
 
 session_start();
@@ -54,6 +54,9 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page to provide a user with their search results given their city and country of choice.">
+    <meta name="keywords" content="Nomad, search, Kenya, Bangladesh, USA, Museum, Architecture, Nature, Restaurant">
+    <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/search-results.css?v=<?php echo time(); ?>">
     <title>NOMAD | Search</title>

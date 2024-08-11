@@ -29,6 +29,9 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page to allow user to view their profile, inlcuding name, profile picture, bio and itinteraries.">
+    <meta name="keywords" content="Nomad, profile, user">
+    <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/profile.css?v=<?php echo time(); ?>">
     <title>NOMAD | Profile</title>

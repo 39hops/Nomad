@@ -30,6 +30,9 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page to provide the user with the home page, allowing them to search for activities in a certain country, login, and signup.">
+    <meta name="keywords" content="Nomad, index, Kenya, Bangladesh, USA, Museum, Architecture, Nature, Restaurant">
+    <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/index.css?v=<?php echo time(); ?>">
     <title>NOMAD</title>

@@ -30,6 +30,9 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page to allow user to edit their profile.">
+    <meta name="keywords" content="Nomad, profile, edit, user">
+    <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
     <link rel="stylesheet" href="../css/edit-profile.css?v=<?php echo time(); ?>">
     <title>NOMAD | Edit Profile</title>
 </head>

@@ -40,6 +40,9 @@ if ($result->num_rows > 0) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Page to allow the user to edit their itineraries.">
+        <meta name="keywords" content="Nomad, edit, Itinerary, Kenya, Bangladesh, USA, Museum, Architecture, Nature, Restaurant">
+        <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/itinerary-activities.css?v=<?php echo time(); ?>">
         <title>NOMAD | Itinerary Activities</title>

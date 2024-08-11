@@ -11,6 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page to allow user to login to their profile.">
+    <meta name="keywords" content="Nomad, profile, login, user">
+    <meta name="author" content="Artin Azizi, Mohamed Dualeh, Raisa Rahman">
     <link rel="stylesheet" href="../css/login.css?v=<?php echo time(); ?>">
     <title>NOMAD | Login</title>
 </head>
