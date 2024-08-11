@@ -1,33 +1,18 @@
-<!--Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
-    Professor: Alemeseged Legesse
-    File Name: index.php
-    Date: 8/11/2024
-    Description: PHP file to provide the user with a page that displays their profile picture, bio, name, and itineraries.
--->
 <?php
-/**
- * Starting session to retrieve user information.
- */
+
 session_start();
 
 $userObj = $_SESSION["user"];
 $userID = $userObj[0]->id;
-/**
- * Including database connection script.
- */
-include "../php/db_connection.php";
+
+include ("../php/db_connection.php");
 
 $itinerariesArray = [];
-/**
- * Query to find all of the user's itineraries.
- */
 $sql = "SELECT * FROM itinerary
 WHERE user_id = $userID
 ORDER BY date_created DESC";
 $result = $conn->query($sql);
-/**
- * Fetching results.
- */
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $itinerariesArray[] = (object) $row;
@@ -74,73 +59,79 @@ if ($result->num_rows > 0) {
         </div>
     </div>
     <script>
-        // Grabbing all elements by ID.
-        var edit = document.getElementById('edit');
-        var create = document.getElementById('create');
-        var createModal = document.getElementById('createModal');
-        var closeCreate = document.querySelector('.close');
-        var itinerariesArray = <?php echo json_encode($itinerariesArray) ?>;
-        var itryContainer = document.querySelector('.itry-container');
-        var usernameEl = document.getElementById('username');
-        var bioEl = document.getElementById('bio');
-        var topName = document.getElementById('topName');
-        var avi = document.getElementById('avi');
-        edit.addEventListener('click', editProfile);
-        create.addEventListener('click', openModal);
-        closeCreate.addEventListener('click', closeModal);
+    var edit = document.getElementById('edit');
+    var create = document.getElementById('create');
+    var createModal = document.getElementById('createModal');
+    var closeCreate = document.querySelector('.close');
+    var itinerariesArray = <?php echo json_encode($itinerariesArray) ?>;
+    var itryContainer = document.querySelector('.itry-container');
+    var usernameEl = document.getElementById('username');
+    var bioEl = document.getElementById('bio');
+    var topName = document.getElementById('topName');
+    var avi = document.getElementById('avi');
+    edit.addEventListener('click', editProfile);
+    create.addEventListener('click', openModal);
+    closeCreate.addEventListener('click', closeModal);
 
-        function editProfile() {
-            console.log('this is the edit function');
+    function editProfile() {
+        console.log('this is the edit function');
+    }
+
+    function openModal() {
+        createModal.style.display = "block";
+    }
+
+    function closeModal() {
+        createModal.style.display = "none";
+    }
+
+    function onLoad() {
+
+        usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+        topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
+        var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
+        var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
+
+        if (bioVal) {
+            bioEl.innerText = bioVal;
         }
-        // Open modal function.
-        function openModal() {
-            createModal.style.display = "block";
+
+        if (aviUrl) {
+            avi.src = aviUrl;
+        } else {
+            avi.src = '../images/default-anouar-olh.jpg';
         }
-        // Close modal function.
-        function closeModal() {
-            createModal.style.display = "none";
-        }
-        // Loading profile information.
-        function onLoad() {
-            usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
-            topName.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
-            var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
-            var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
-            if (bioVal) {
-                bioEl.innerText = bioVal;
+
+        console.log(itinerariesArray);
+
+        if (itinerariesArray && itinerariesArray.length > 0) {
+            for (i = 0; i < itinerariesArray.length; i++) {
+                var card = document.createElement('div');
+                card.classList.add('card');
+                card.classList.add('glass');
+                card.dataset.itineraryId = itinerariesArray[i].id;
+                card.addEventListener('click', getItryAct);
+                var itName = document.createElement('p');
+                itName.innerText = itinerariesArray[i].it_name;
+                card.append(itName);
+                itryContainer.append(card);
             }
-            if (aviUrl) {
-                avi.src = aviUrl;
-            } else {
-                avi.src = '../images/default-anouar-olh.jpg';
-            }
-            if (itinerariesArray && itinerariesArray.length > 0) {
-                for (i = 0; i < itinerariesArray.length; i++) {
-                    var card = document.createElement('div');
-                    card.classList.add('card');
-                    card.classList.add('glass');
-                    card.dataset.itineraryId = itinerariesArray[i].id;
-                    card.addEventListener('click', getItryAct);
-                    var itName = document.createElement('p');
-                    itName.innerText = itinerariesArray[i].it_name;
-                    card.append(itName);
-                    itryContainer.append(card);
-                }
-            } else {
-                var p = document.createElement('p');
-                p.innerText = 'There are no itineraries to show.';
-                p.classList.add('null');
-                itryContainer.append(p);
-            }
+        } else {
+            var p = document.createElement('p');
+            p.innerText = 'There are no itineraries to show.';
+            p.classList.add('null');
+            itryContainer.append(p);
         }
-        onLoad();
-        // Getting all activities associated with an itinerary.
-        function getItryAct(e) {
-            var itineraryID = (e.target).dataset.itineraryId;
-            var itineraryName = (e.target).firstChild.innerText;
-            var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
-            window.location.replace(url);
-        }
+    }
+
+    onLoad();
+
+    function getItryAct(e) {
+        var itineraryID = (e.target).dataset.itineraryId;
+        var itineraryName = (e.target).firstChild.innerText;
+        var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
+        window.location.replace(url);
+    }
     </script>
 </body>
 
