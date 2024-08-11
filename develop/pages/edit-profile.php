@@ -5,19 +5,35 @@
     Description: PHP file to provide the user the ability to edit their profile.
 -->
 <?php
-
+/**
+ * Starting session to access user information.
+ */
 session_start();
-
+/**
+ * Retrieving user information.
+ */
 $userObj = $_SESSION["user"];
 $userID = $userObj[0]->id;
 
+/**
+ * Including the DB connection script.
+ */
 include ("../php/db_connection.php");
 
+/**
+ * Making the user object an array.
+ */
 $userObj = array();
+
+/**
+ * Query to find all users where their ID is equal to the current user logged in.
+ */
 $sql = "SELECT * FROM user
 WHERE id = $userID";
 $result = $conn->query($sql);
-
+/**
+ * Fetching query results.
+ */
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $userObj[] = (object) $row;
@@ -92,10 +108,13 @@ if ($result->num_rows > 0) {
     </div>
 
     <script>
+    /**
+     * topName variable to change the users username and display it to them.
+     */
     var topName = document.getElementById('topName');
     var avi = document.getElementById('avi');
     var aviUrl = <?php echo json_encode($userObj[0]->avi_url)?>;
-
+    
     topName.innerHTML = <?php echo json_encode($userObj[0]->u_username) ?>;
 
     if (aviUrl) {
