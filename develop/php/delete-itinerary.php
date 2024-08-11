@@ -20,8 +20,7 @@ if (isset($_POST['itineraryID'])) {
     include ("db_connection.php");
 
     /** 
-     * Create the SQL query to delete a record from the 'itinerary' table where the ID matches 
-     * Note: This query is susceptible to SQL injection; using prepared statements is recommended 
+     * Create the SQL query to delete a record from the 'itinerary' table where the ID matches.
      */
     $sql = 
         "DELETE FROM itinerary 
