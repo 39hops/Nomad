@@ -1,3 +1,10 @@
+<!--Names: Artin Azizi (041131883), Mohamed Dualeh (041137299), Raisa Rahman (041129634)
+    Professor: Alemeseged Legesse
+    File Name: login.php
+    Date: 8/11/2024
+    Description: PHP file so that user can login to their profile.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
