@@ -1,8 +1,12 @@
 <?php
-
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: create-itinerary.php
+# Date: 8/11/2024
+# Description: PHP file allow the user to create an itinerary.
 session_start();
 
-include ("db_connection.php");
+include "db_connection.php";
 
 
 $sql = "INSERT INTO itinerary (it_name, user_id) VALUES (?, ?)";

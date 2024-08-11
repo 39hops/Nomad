@@ -1,4 +1,10 @@
 <?php
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: delete-itinerary-activity.php
+# Date: 8/11/2024
+# Description: PHP file to allow user to remove an actity from an itinerary.
+
 if (isset($_POST['itineraryID']) && isset($_POST['activityID'])) {
 
     $itineraryID = $_POST['itineraryID'];

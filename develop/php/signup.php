@@ -1,6 +1,10 @@
 <?php
-
-include ("db_connection.php");
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: signup.php
+# Date: 8/11/2024
+# Description: PHP file to insert the user's signup information into the database.
+include "db_connection.php";
 
 
 $sql = "INSERT INTO user (first_name, last_name, u_username, email, `u_password`)

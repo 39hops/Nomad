@@ -1,7 +1,12 @@
 <?php
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: add-to-itinerary.php
+# Date: 8/11/2024
+# Description: PHP file to allow a user to add an activity to an itinerary.
 if (isset($_POST['activityID']) && isset($_POST['itineraryID'])) {
 
-    include("db_connection.php");
+    include "db_connection.php" ;
 
     $activitiesArray = [];
     $sql = "INSERT INTO itinerary_activity (itinerary_id, activity_id)

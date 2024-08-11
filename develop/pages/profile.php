@@ -1,5 +1,9 @@
 <?php
-
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: profile.php
+# Date: 8/11/2024
+# Description: PHP page to allow the user to view their name, profile picture, bio, and itineraries.
 session_start();
 
 $userObj = $_SESSION["user"];

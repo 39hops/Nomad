@@ -1,5 +1,9 @@
 <?php
-
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: itinerary-activities.php
+# Date: 8/11/2024
+# Description: PHP page to allow the user to edit their itineraries.
 session_start();
 
 if (isset($_SESSION["user"])) {

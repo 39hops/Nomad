@@ -1,5 +1,10 @@
 <?php
-include("../php/db_connection.php");
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: search-results.php
+# Date: 8/11/2024
+# Description: PHP file to check to provide a user with their search results given their city and country of choice.
+include "../php/db_connection.php";
 
 session_start();
 

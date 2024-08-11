@@ -1,9 +1,11 @@
 <?php 
+# Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
+# Professor: Alemeseged Legesse
+# File Name: checklogin.php
+# Date: 8/11/2024
+# Description: PHP file to check to see if a user's login information is correct. 
 session_start();
-include ("db_connection.php");
-
-
-
+include "db_connection.php";
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $uname =  $_POST['username'];
     $pass = $_POST['password']; 
