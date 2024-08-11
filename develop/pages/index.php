@@ -1,34 +1,17 @@
-<!--Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
-    Professor: Alemeseged Legesse
-    File Name: index.php
-    Date: 8/11/2024
-    Description: PHP file for the main page of Nomad. Includes hyperlinks to signup, login, search for activities in a certain country/city.
--->
 <?php
-/**
- * Session starting to see if a user is currently logged in.
- */
+
 session_start();
-/**
- * If the user variable in session is set, update the userObj variable to be user's information.
- */
+
 if (isset($_SESSION["user"])) {
     $userObj = $_SESSION["user"];
 }
-/**
- * Including database connection script.
- */
+
 include ("../php/db_connection.php");
 
-/**
- * Array of countries to store the query result of all available countries.
- */
 $countriesArray = [];
 $sql = "SELECT id, cr_name FROM country";
 $result = $conn->query($sql);
-/**
- * Fetching all countries available.
- */
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $countriesArray[$row["id"]] = $row["cr_name"];
@@ -58,10 +41,6 @@ if ($result->num_rows > 0) {
 
         <div class="container" id="search">
             <?php
-            /**
-             * Conditional navbar, if user is logged in, display their user information as well as links to logout, and edit profile.
-             * If user is not logged in, display links to signup, and login.
-             */
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
                 <span id='nomad'>NOMAD</span>
