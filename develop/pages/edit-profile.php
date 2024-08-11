@@ -1,4 +1,4 @@
-<!--Names: Artin Azizi (041131883), Mohamed Dualeh (041137299), Raisa Rahman (041129634)
+<!--Names: Artin Azizi (041131883), Mohamed Dualeh (41137299), Raisa Rahman (041129634)
     Professor: Alemeseged Legesse
     File Name: edit-profile.php
     Date: 8/11/2024

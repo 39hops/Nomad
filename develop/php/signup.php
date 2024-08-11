@@ -1,10 +1,3 @@
-<!--Names: Artin Azizi (041131883), Mohamed Dualeh (041137299), Raisa Rahman (041129634)
-    Professor: Alemeseged Legesse
-    File Name: signup.php
-    Date: 8/11/2024
-    Description: PHP file to send signup user data into database.
--->
-
 <?php
 
 include ("db_connection.php");
