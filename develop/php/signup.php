@@ -4,65 +4,34 @@
     Date: 8/11/2024
     Description: PHP file to send signup user data into database.
 -->
+
 <?php
 
-/** 
- * Include the database connection script 
- */
-include "db_connection.php";
+include ("db_connection.php");
 
-/** 
- * Define the SQL query to insert a new user into the 'user' table 
- */
+
 $sql = "INSERT INTO user (first_name, last_name, u_username, email, `u_password`)
-VALUES (?, ?, ?, ?, ?)";
+VALUES (?, ?, ?, ?, ?) ";
 
-/** 
- * Initialize a statement object for the prepared statement 
- */
 $conn_stmt = $conn->stmt_init();
 
-/** 
- * Prepare the SQL statement 
- */
-if (!$conn_stmt->prepare($sql)) {
-    /** 
-     * If preparation fails, terminate the script and display the error 
-     */
+if(! $conn_stmt->prepare($sql)){
     die("SQL Error: " . $conn->error);
-}
-
-/** 
- * Retrieve and hash the password from the POST request 
- */
+};
 $password = $_POST['password'];
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+$conn_stmt->bind_param("sssss",
+$_POST["fname"],
+$_POST['lname'],
+$_POST['username'],
+$_POST['email'],
+$passwordHash);
 
-/** 
- * Bind parameters to the prepared statement 
- */
-$conn_stmt->bind_param(
-    "sssss", 
-    $_POST["fname"], 
-    $_POST['lname'], 
-    $_POST['username'], 
-    $_POST['email'], 
-    $passwordHash
-);
 
-/** 
- * Execute the prepared statement 
- */
-if ($conn_stmt->execute()) {
-    /** 
-     * On successful execution, redirect to the login page 
-     */
+ if ($conn_stmt->execute()){
     header("Location: ../pages/login.php");
-    exit(); 
-} else {
-    /** 
-     * If execution fails, terminate the script and display the error 
-     */
+ } else {
     die($conn->error . " ");
-}
+ }
 
+$conn->close();
