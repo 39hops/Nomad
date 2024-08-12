@@ -35,12 +35,10 @@ body {
 }
 
 .search-results-container {
-  /* border: 1px solid white; */
   height: 100vh;
 }
 
 .nav {
-  /* border: solid white 1px; */
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -49,7 +47,6 @@ body {
 }
 
 .nav span {
-  /* border: solid white 1px; */
   font-family: alexana;
   font-size: 45px;
   cursor: pointer;
@@ -68,7 +65,6 @@ body {
 }
 
 .viewing {
-  /* border: solid white 1px; */
   width: fit-content;
   font-family: inter;
   font-size: 80px;
@@ -79,28 +75,11 @@ body {
   color: white;
 }
 
-@media screen and (max-width: 1000px) {
-  .viewing {
-    font-size: 60px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .viewing {
-    font-size: 40px;
-  }
-
-  .card {
-    margin: auto;
-  }
-}
-
 .viewing span {
   color: #36827f;
 }
 
 .search-results {
-  /* border: 1px solid red; */
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
@@ -112,7 +91,6 @@ body {
 }
 
 .card {
-  /* border: solid black 1px; */
   margin: 10px;
   padding: 10px;
   border-radius: 50px;
@@ -129,7 +107,6 @@ body {
 }
 
 .activity-name {
-  /* border: solid white 1px; */
   font-weight: bold;
   text-align: center;
   margin: 5px;
@@ -149,13 +126,11 @@ body {
 }
 
 .description {
-  /* border: solid green 1px; */
   padding: 10px;
   height: 20%;
 }
 
 .add-btn {
-  /* border: solid green 1px; */
   position: absolute;
   z-index: 10;
   font-size: 50px;
@@ -277,7 +252,6 @@ form button:hover {
 }
 
 .close {
-  /* border: solid white 1px; */
   text-align: right;
   padding-right: 15px;
   color: #12262d;
@@ -300,4 +274,20 @@ form button:hover {
   margin-left: auto;
   margin-right: auto;
   display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .viewing {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .viewing {
+    font-size: 40px;
+  }
+
+  .card {
+    margin: auto;
+  }
 }

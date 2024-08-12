@@ -11,8 +11,6 @@ Description: CSS Stylesheet for edit-profile page. */
     src: url(../fonts/Alexana.ttf);
 }
 
-/* background-color: #12262d;
-    background-color: #36827f; */
 @font-face {
     font-family: inter;
     src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
@@ -39,7 +37,6 @@ body {
 }
 
 .nav {
-    /* border: solid red 1px; */
     width: 100%;
     padding: 10px;
     display: flex;
@@ -67,12 +64,10 @@ body {
 }
 
 .edit-container {
-    /* border: solid white 1px; */
     height: 100vh;
 }
 
 .content-wrapper {
-    /* border: solid yellow 1px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -92,7 +87,6 @@ body {
 }
 
 .edit-wrapper {
-    /* border: solid yellow 1px; */
     width: fit-content;
     padding: 20px;
     height: fit-content;

@@ -39,7 +39,6 @@ body {
 }
 
 .nav {
-    /* border: solid white 1px; */
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -48,7 +47,6 @@ body {
 }
 
 .nav span {
-    /* border: solid white 1px; */
     font-family: alexana;
     font-size: 45px;
     cursor: pointer;
@@ -68,14 +66,12 @@ body {
 }
 
 .activity-wrapper {
-    /* border: solid white 1px; */
     width: 60vw;
     margin-left: auto;
     margin-right: auto;
 }
 
 h1 {
-    /* border: solid white 1px; */
     width: fit-content;
     font-family: inter;
     font-size: 80px;
@@ -117,7 +113,6 @@ h1 {
 }
 
 .card {
-    /* border: solid black 1px; */
     height: 300px;
     border-radius: 50px;
     margin: 10px;
@@ -148,7 +143,6 @@ img {
 }
 
 .content {
-    /* border: solid white 1px; */
     margin: 10px;
     padding: 10px;
     font-size: 20px;
@@ -163,7 +157,6 @@ img {
 }
 
 .icon {
-    /* border: solid white 1px; */
     margin-right: 10px;
     height: 80px;
     width: 80px;

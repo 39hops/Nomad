@@ -31,7 +31,7 @@
                 <div class="avi-wrapper">
                     <img id="avatar" src="../images/default-anouar-olh.jpg" alt="Avatar">
                 </div>
-
+                <!-- Login form input -->
                 <div class="loginItems">
                     <input class="glass" placeholder="Username" type="text" name="username" id="username">
                 </div>

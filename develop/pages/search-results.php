@@ -8,6 +8,7 @@ include "../php/db_connection.php";
 
 session_start();
 
+# Load itineraries associated with a logged in user for add to itinerary function
 if (isset($_SESSION["user"])) {
     $userObj = $_SESSION["user"];
     $userID = $userObj[0]->id;
@@ -26,6 +27,7 @@ if (isset($_SESSION["user"])) {
     }
 }
 
+# Get activities associated with city and activity details sent through header
 $cityID = $_GET['cityID'];
 $activity = $_GET['activity'];
 
@@ -68,7 +70,7 @@ if ($result->num_rows > 0) {
 
 
         <?php
-
+        // Display a conditional header with respect to a logged in user 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
             echo "<div class='nav'>
             <a href='../pages/index.php'><span id='nomad'>NOMAD</span></a>
@@ -89,13 +91,14 @@ if ($result->num_rows > 0) {
         <div class='viewing'>
             now viewing <span id='activity'></span> in <span id='city'></span>
         </div>
-
+        <!-- Dialog box for adding to itinerary -->
         <div class="modal-bg">
             <div class="glass" id="addModal">
                 <div class="close">&times;</div>
                 <div class="form-wrapper">
                     <form id="select-itry">
                     </form>
+                    <!-- Hidden success method, displayed if activity is successfully added to itinerary -->
                     <p class="success">Successfully added to itinerary</p>
                 </div>
             </div>
@@ -114,6 +117,7 @@ if ($result->num_rows > 0) {
     const activity = document.getElementById('activity');
     const city = document.getElementById('city');
     const cityName = <?php echo json_encode($_GET['cityName']) ?>;
+    // Conditionally load itinerary activities associated with logged in user, only if user is logged in
     var itinerariesArray = <?php
                             if ((isset($_SESSION['user']))) {
                                 echo json_encode($itinerariesArray);
@@ -127,6 +131,7 @@ if ($result->num_rows > 0) {
     var p = document.getElementById('message');
     var message = document.querySelector('.success');
     var topName = document.getElementById('topName');
+    // Display username in the navigation bar, only if user is logged in
     var username = <?php
                     if ((isset($_SESSION['user']))) {
                         echo json_encode($userObj[0]->u_username);
@@ -139,16 +144,14 @@ if ($result->num_rows > 0) {
         topName.innerHTML = username;
     }
 
-    console.log(activitiesArray);
-
+    // Display to user which search results they are viewing
     activity.innerHTML = <?php echo json_encode($_GET['activity']); ?>;
     city.innerHTML = cityName;
 
     close.addEventListener('click', closeModal);
 
-
+    // Dynamically load activity cards associated with the city
     function loadSearch() {
-
 
         for (let i = 0; i < activitiesArray.length; i++) {
             var card = document.createElement('div');
@@ -183,6 +186,7 @@ if ($result->num_rows > 0) {
         }
     }
 
+    // Conditionally display dialog box for adding items to itinerary
     function loadModal() {
         console.log(itinerariesArray);
 
@@ -193,6 +197,7 @@ if ($result->num_rows > 0) {
             select.innerHTML = 'Select an itinerary: ';
             form.append(select);
 
+            // If a user is logged in, display all itineraries associated with the user
             for (i = 0; i < itinerariesArray.length; i++) {
                 var field = document.createElement('input');
                 var br = document.createElement('br');
@@ -217,7 +222,7 @@ if ($result->num_rows > 0) {
             addBtn.addEventListener('click', addItry);
 
             form.append(addBtn);
-
+            // If a user is logged in but does not have any itineraries, prompt them to create one
         } else if (itinerariesArray.length == 0) {
             var select = document.createElement('p');
             var redirect = document.createElement('p');
@@ -231,7 +236,7 @@ if ($result->num_rows > 0) {
             form.append(select);
             form.append(redirect);
         } else {
-
+            // If a user is not logged in, prompt them to do so in order to add an item to itinerary
             var select = document.createElement('p');
             var redirect = document.createElement('p');
 
@@ -258,6 +263,7 @@ if ($result->num_rows > 0) {
         addModal.style.display = "none";
     }
 
+    // Add activity to itinerary function
     function addItry() {
 
         activityID = addModal.dataset.activityId;
@@ -267,6 +273,7 @@ if ($result->num_rows > 0) {
             console.log('Please an activity to add to your itinerary');
         }
 
+        // Send itinerary ID and activity ID to database
         $.ajax({
             type: "POST",
             url: "../php/add-to-itinerary.php",

@@ -4,6 +4,8 @@
 // Date: 8/11/2024
 // Description: JS page to facilitate a drowdown menu for search functionality.
 
+
+// Search bar dropdown menu logic
 let dropdown = document.querySelectorAll(".dropdown");
 
 for (i = 0; i < dropdown.length; i++) {

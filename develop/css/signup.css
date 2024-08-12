@@ -37,12 +37,10 @@ body {
 }
 
 .signup-window {
-    /* border: 3px solid red; */
     height: 100vh;
 }
 
 .nav {
-    /* border: 3px solid black; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -70,7 +68,6 @@ body {
 }
 
 .form-container {
-    /* border: solid white 1px; */
     margin: 20px;
     padding: 20px;
     width: 70%;
@@ -80,7 +77,6 @@ body {
 }
 
 form {
-    /* border: black solid 2px; */
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -88,7 +84,6 @@ form {
 }
 
 h2 {
-    /* border: solid white 1px; */
     padding: 15px;
     width: 100%;
     font-family: inter;
@@ -117,8 +112,6 @@ form input {
     font-family: inter;
     font-size: 20px;
     cursor: pointer;
-
-
 }
 
 .error {
@@ -127,8 +120,6 @@ form input {
     text-align: center;
     font-family: inter;
     font-weight: bold;
-
-
 }
 
 input.error {

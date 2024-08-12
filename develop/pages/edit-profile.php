@@ -11,6 +11,7 @@ $userID = $userObj[0]->id;
 
 include ("../php/db_connection.php");
 
+# Clear user object and re-query so that when profile details are updated in the database, DOM can refresh new values
 $userObj = array();
 $sql = "SELECT * FROM user
 WHERE id = $userID";
@@ -46,7 +47,7 @@ if ($result->num_rows > 0) {
             <a href='../pages/profile.php'>PROFILE</a>
             <a href='../php/logout.php'>LOGOUT</a>
         </div>
-
+<!-- Forms for updating user information -->
         <div class="content-wrapper">
             <div class="avi">
                 <img id="avi" src="">
@@ -93,18 +94,19 @@ if ($result->num_rows > 0) {
     </div>
 
     <script>
+    // Logic for displaying username on nav bar according to logged in user session
     var topName = document.getElementById('topName');
     var avi = document.getElementById('avi');
     var aviUrl = <?php echo json_encode($userObj[0]->avi_url)?>;
 
     topName.innerHTML = <?php echo json_encode($userObj[0]->u_username) ?>;
 
+    // Display a default image if the user has not uploaded a custom profile photo
     if (aviUrl) {
         avi.src = aviUrl;
     } else {
         avi.src = '../images/default-anouar-olh.jpg';
     }
-    console.log(aviUrl);
     </script>
 
 </body>

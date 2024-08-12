@@ -11,6 +11,7 @@ $userID = $userObj[0]->id;
 
 include ("../php/db_connection.php");
 
+# Load itineraries associated with logged in user for use in javascript
 $itinerariesArray = [];
 $sql = "SELECT * FROM itinerary
 WHERE user_id = $userID
@@ -55,6 +56,7 @@ if ($result->num_rows > 0) {
         </div>
         <div class="itry-container"></div>
     </div>
+    <!-- Dialog box for creating a new itinerary -->
     <div class="glass" id="createModal">
         <div class="close">&times;</div>
         <div class="form-wrapper">
@@ -65,8 +67,8 @@ if ($result->num_rows > 0) {
             </form>
         </div>
     </div>
+
     <script>
-    var edit = document.getElementById('edit');
     var create = document.getElementById('create');
     var createModal = document.getElementById('createModal');
     var closeCreate = document.querySelector('.close');
@@ -76,22 +78,20 @@ if ($result->num_rows > 0) {
     var bioEl = document.getElementById('bio');
     var topName = document.getElementById('topName');
     var avi = document.getElementById('avi');
-    edit.addEventListener('click', editProfile);
     create.addEventListener('click', openModal);
     closeCreate.addEventListener('click', closeModal);
 
-    function editProfile() {
-        console.log('this is the edit function');
-    }
-
+    // Display dialog box for creating a new itinerary
     function openModal() {
         createModal.style.display = "block";
     }
 
+    // Close dialog box
     function closeModal() {
         createModal.style.display = "none";
     }
 
+    // Load itineraries and and dynamically display cards upon page load
     function onLoad() {
 
         usernameEl.innerText = <?php echo json_encode($userObj[0]->u_username); ?>;
@@ -99,6 +99,7 @@ if ($result->num_rows > 0) {
         var bioVal = <?php echo json_encode($userObj[0]->bio); ?>;
         var aviUrl = <?php echo json_encode($userObj[0]->avi_url); ?>;
 
+        // If the user has a biography listed with their profile, conditionally display
         if (bioVal) {
             bioEl.innerText = bioVal;
         }
@@ -109,8 +110,7 @@ if ($result->num_rows > 0) {
             avi.src = '../images/default-anouar-olh.jpg';
         }
 
-        console.log(itinerariesArray);
-
+        // Conditional display if the user does not have any associated itineraries
         if (itinerariesArray && itinerariesArray.length > 0) {
             for (i = 0; i < itinerariesArray.length; i++) {
                 var card = document.createElement('div');
@@ -131,12 +131,14 @@ if ($result->num_rows > 0) {
         }
     }
 
+    // Load itinerary cards upon page load
     onLoad();
 
+    // When an itinerary card is clicked, send itinerary information to header for loading on itinerary-activities page
     function getItryAct(e) {
         var itineraryID = (e.target).dataset.itineraryId;
         var itineraryName = (e.target).firstChild.innerText;
-        var url = '../php/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
+        var url = '../pages/itinerary-activities.php?itineraryID=' + itineraryID + '&itineraryName=' + itineraryName;
         window.location.replace(url);
     }
     </script>

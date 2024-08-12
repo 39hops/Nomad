@@ -13,6 +13,7 @@ if (isset($_SESSION["user"])) {
 
 include ("../php/db_connection.php");
 
+# Load countries from database for search bar drop down menu used in javascript
 $countriesArray = [];
 $sql = "SELECT id, cr_name FROM country";
 $result = $conn->query($sql);
@@ -48,6 +49,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="container" id="search">
+            <!-- Display a conditional header based on user logged in status -->
             <?php
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
                 echo "<div class='nav'>
@@ -66,6 +68,7 @@ if ($result->num_rows > 0) {
             ?>
             <h1 id="discover">discover.</h1>
 
+            <!-- Search bar dropdown selection -->
             <div class="search-bar glass">
 
                 <div class="dropdown">
@@ -105,6 +108,8 @@ if ($result->num_rows > 0) {
     var actTitle = document.getElementById('activity-title');
     var searchBtn = document.getElementById('search-btn');
     var topName = document.getElementById('topName');
+
+    // Display username in the nav bar if user is logged in
     var username = <?php 
         if (isset($_SESSION['user'])) {
             echo json_encode($userObj[0]->u_username); 
@@ -116,11 +121,13 @@ if ($result->num_rows > 0) {
     if (topName !== null) {
         topName.innerHTML = username;
     }
+
     for (i = 0; i < dropdown.length; i++) {
         dropdown[i].addEventListener('click', toggle);
     }
     searchBtn.addEventListener('click', search);
 
+    // Dropdown menu to display entries
     function toggle() {
         for (i = 0; i < dropdown.length; i++) {
             if (dropdown[i] !== this) {
@@ -132,6 +139,7 @@ if ($result->num_rows > 0) {
         this.classList.toggle('active');
     }
 
+    // Set up input values for search form submission
     function selectCountry() {
         cityTitle.value = '';
         actTitle.value = '';
@@ -152,6 +160,7 @@ if ($result->num_rows > 0) {
         actTitle.dataset.qry = this.dataset.qry;
     }
 
+    // Load countries for dropdown menu
     function showCountries() {
         var countries = <?php echo json_encode($countriesArray); ?>;
         var keys = Object.keys(countries);
@@ -165,8 +174,11 @@ if ($result->num_rows > 0) {
             optnDiv.addEventListener('click', selectCountry);
         }
     }
+    
+    // Populate countries dropdown menu upon page load
     showCountries();
 
+    // Populate city dropdown menu upon selecting a country
     function getCities(id) {
         $.ajax({
             type: "POST",
@@ -196,6 +208,7 @@ if ($result->num_rows > 0) {
         });
     }
 
+    // Populate activities dropdown menu upon city selection
     function showActivities() {
         var options = document.getElementById('activity-optn');
         var nullAct = document.getElementById('nullAct');
@@ -212,6 +225,7 @@ if ($result->num_rows > 0) {
         }
     }
 
+    // Send form input values to header for use in search-results page upon search
     function search() {
         var cityName = cityTitle.value;
         var cityID = cityTitle.dataset.qry;

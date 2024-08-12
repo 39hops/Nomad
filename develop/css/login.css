@@ -23,7 +23,6 @@ Description: CSS Stylesheet for login page. */
 
 body {
     /* image source https://www.pexels.com/photo/dark-blue-ocean-water-with-foamy-waves-6029883/ by pok rie */
-    /* colour grade this and the index.php background to ensure cohesion */
     background-image: url(../images/waves-pok-rie.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
@@ -40,7 +39,6 @@ body {
 }
 
 .login-window {
-    /* border: 3px solid red; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -48,7 +46,6 @@ body {
 }
 
 .nav {
-    /* border: 3px solid black; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -75,7 +72,6 @@ body {
 }
 
 .form-container {
-    /* border: solid blue 1px; */
     margin: 20px;
     padding: 20px;
     width: 70%;
@@ -85,7 +81,6 @@ body {
 }
 
 form {
-    /* border: solid pink 2px; */
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -96,7 +91,6 @@ form {
 }
 
 h2 {
-    /* border: solid white 1px; */
     padding: 15px;
     width: 100%;
     font-size: 80px;
@@ -104,14 +98,12 @@ h2 {
 }
 
 #avatar {
-    /* border: black solid 2px; */
     border-radius: 50%;
     width: 200px;
     height: 200px;
 }
 
 .loginItems {
-    /* border: solid black 1px; */
     padding: 10px;
     margin: 5px;
     display: flex;
@@ -159,7 +151,6 @@ form input::placeholder {
 }
 
 .signup {
-    /* border: solid white 1px; */
     padding: 10px;
     text-align: center;
     font-family: inter;
