@@ -4,33 +4,42 @@
 # File Name: itinerary-activities.php
 # Date: 8/11/2024
 # Description: PHP page to allow the user to edit their itineraries.
+
+# Start the session to access session variables
 session_start();
 
+# Check if the user session is set, and assign the user object to $userObj
 if (isset($_SESSION["user"])) {
     $userObj = $_SESSION["user"];
 }
 
+# Get the itinerary ID from the URL parameters
 $itineraryID = $_GET['itineraryID'];
 
+# Include the database connection file to establish a connection
 include ("db_connection.php");
 
+# Initialize an empty array to store itinerary activities
 $itryActArray = [];
 
+# SQL query to fetch itinerary activities and related activity details
 $sql = "SELECT *
 FROM itinerary_activity
 JOIN activity ON itinerary_activity.activity_id = activity.a_id
 JOIN itinerary ON itinerary_activity.itinerary_id = itinerary.id
 WHERE itinerary_activity.itinerary_id = $itineraryID";
 
+# Execute the query and store the result
 $result = $conn->query($sql);
 
+# If there are any rows returned by the query, store them in the $itryActArray
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $itryActArray[] = (object) $row;
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -5,21 +5,15 @@
 # Date: 8/11/2024
 # Description: PHP file to create a connection to the database.
 
-$username = 'root';
-$password = '';
-$dbname = 'nomad';
+$username = 'root'; # Database username
+$password = ''; # Database password
+$dbname = 'nomad'; # Database name
+
+# Create a new database connection
 $conn = new mysqli('localhost', $username, $password, $dbname) or die("Unable to connect. ");
+
+# Check if the connection was successful
 if ($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error); # Output error if connection fails
 }
-
-
-
-
-
-
-
-
-
-
-
+?>
